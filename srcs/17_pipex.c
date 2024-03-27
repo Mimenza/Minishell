@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:13:42 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 08:15:13 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:44:12 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ int	pipex(t_input **struct_input, t_step *step)
 {
 	int					fd[2];
 	t_var_parsed_table	*cmd_list;
-	int					control;
+	int					control[2];
 
-	control = TRUE;
+	control[0] = TRUE;
+	control[1] = TRUE;
 	cmd_list = (*struct_input)->parsed_table;
 	if (!cmd_list->next)
-		ft_built_in(cmd_list, struct_input, &control, step);
-	if (control == FALSE)
+		ft_built_in1(cmd_list, struct_input, &control, step);
+	if (control[0] == FALSE)
 		return (0);
 	fd[READ] = 0;
 	fd[WRITE] = 0;
