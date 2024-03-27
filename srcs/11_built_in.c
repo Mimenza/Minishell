@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/26 16:58:15 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:04:06 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,6 @@ void	ft_eexit(char **arg, t_input **struct_input, t_step *step)
 	exit(num % 256);
 }
 
-
 //Custom unset function
 void	ft_unset(char *name, t_input **struct_input)
 {
@@ -303,59 +302,125 @@ void	ft_unset(char *name, t_input **struct_input)
 }
 
 //Main built in function
-int	ft_built_in(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, int mode, t_step *step)
+// int	ft_built_in(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, int mode, t_step *step)
+// {
+// 	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		else if(mode == 2)
+// 			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out);
+// 		else
+// 			ft_echo(cmd_list->cmd_splited, 1);
+// 		*control = FALSE;
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_pwd(struct_input);
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_cd(cmd_list->cmd_splited, struct_input);
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_export(cmd_list->cmd_splited[1], struct_input);
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_unset(cmd_list->cmd_splited[1], struct_input);
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_print_var(*struct_input);
+// 	}
+// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
+// 	{
+// 		if(mode == 0)
+// 			return(TRUE);
+// 		*control = FALSE;
+// 		ft_eexit(cmd_list->cmd_splited, struct_input, step);
+// 	}
+// 	return (0);
+// }
+
+int	ft_built_in1(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, t_step *step)
 {
 	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
-		else if(mode == 2)
 			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out);
-		else
-			ft_echo(cmd_list->cmd_splited, 1);
 		*control = FALSE;
 	}
 	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_pwd(struct_input);
 	}
 	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_cd(cmd_list->cmd_splited, struct_input);
 	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
+	else
+		ft_built_in2(cmd_list, struct_input, control, step);
+	return (0);
+}
+
+int	ft_built_in2(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, t_step *step)
+{
+	if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_export(cmd_list->cmd_splited[1], struct_input);
 	}
 	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_unset(cmd_list->cmd_splited[1], struct_input);
 	}
 	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_print_var(*struct_input);
 	}
 	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
 	{
-		if(mode == 0)
-			return(TRUE);
 		*control = FALSE;
 		ft_eexit(cmd_list->cmd_splited, struct_input, step);
 	}
 	return (0);
+}
+
+int	ft_is_built_in(t_var_parsed_table	*cmd_list)
+{
+	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
+		return(TRUE);
+	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
+		return(TRUE);
+	return (FALSE);
 }

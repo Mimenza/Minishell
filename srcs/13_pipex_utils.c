@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/26 17:05:19 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:37:27 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,61 @@ int	relative_path(t_var_parsed_table *cmd, t_input **env)
 }
 
 //Joins the posible paths and checks if there is any available
+// int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)//LA ORIGINAL
+// {
+// 	t_var_parsed_table	*cmd;
+// 	char				*path_env;
+// 	char				**posible_paths;
+// 	int					control;
+// 	struct stat			statbuf;
+
+// 	cmd = *cmd_list;
+// 	if (!cmd->cmd)
+// 		return (FALSE);
+// 	else if (ft_strlen(cmd->cmd_splited[0]) == 0)
+// 		return (print_error(10, cmd->cmd_splited[0], env), FALSE);
+// 	control = TRUE;
+// 	path_env = ft_getenv(&(*env)->ent_var, "PATH");
+// 	if (!path_env)
+// 		return(FALSE);
+// 	posible_paths = ft_split(path_env, ':');
+// 	while(cmd)
+// 	{
+// 		if (cmd->cmd == NULL)
+// 			break;
+// 		if (ft_built_in(cmd, env, NULL, 0, step) == TRUE)
+// 			control = TRUE;
+// 		else if (cmd->cmd_splited[0][0] == '/')
+// 		{
+// 			if (stat(cmd->cmd_splited[0], &statbuf) == -1)
+// 				return (print_error(8, cmd->cmd_splited[0], env), free_double(posible_paths), free(path_env), FALSE);
+// 			if (access(cmd->cmd_splited[0], X_OK) != 0)
+// 			{
+// 				print_error(10, cmd->cmd_splited[0], env);
+// 				control = FALSE;
+// 			}
+// 			if (S_ISDIR(statbuf.st_mode))
+// 				return(print_error(14, NULL, env), free_double(posible_paths), free(path_env), FALSE);
+// 			cmd->path = ft_strdup(cmd->cmd_splited[0]);
+// 		}
+// 		else if (cmd->cmd_splited[0][0] == '.' && cmd->cmd_splited[0][1] == '/')
+// 		{
+// 			if (relative_path(cmd, env) == FALSE)
+// 				control = FALSE;
+// 		}
+// 		else
+// 		{
+// 			if (ft_verify_cmd(posible_paths, cmd, env) == FALSE)
+// 				control = FALSE;
+// 		}
+// 		if (control == FALSE)
+// 			return(free_double(posible_paths), free(path_env), FALSE);
+// 		cmd = cmd->next;
+// 	}
+// 	return (free(path_env), free_double(posible_paths), TRUE);
+// }
+
+
 int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)
 {
 	t_var_parsed_table	*cmd;
@@ -104,7 +159,7 @@ int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)
 	{
 		if (cmd->cmd == NULL)
 			break;
-		if (ft_built_in(cmd, env, NULL, 0, step) == TRUE)
+		if (ft_is_built_in(cmd, env, NULL, 0, step) == TRUE)
 			control = TRUE;
 		else if (cmd->cmd_splited[0][0] == '/')
 		{
@@ -136,7 +191,6 @@ int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)
 	return (free(path_env), free_double(posible_paths), TRUE);
 }
 
-
 //Custom here doc function
 int	ft_here_doc(char *end, int fd)
 {
@@ -163,7 +217,6 @@ int	ft_here_doc(char *end, int fd)
 	free_here_doc(delimiter, output, line, &outfile);
 	return (outfile);
 }
-
 
 //Free the here doc utils
 void	free_here_doc(char *delimiter, char *output, char *line, int *outfile)
