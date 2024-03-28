@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_read_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:33:58 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 17:48:34 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:57:20 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,10 @@ void read_table(t_input **struct_input)
 	char		*line;
 	char		**tokens;
 	t_options	*new_option;
-	
 
 	states_list = NULL;
 	current_state = NULL;
 	option_index = 0;
-	
 	fd = open("parsing_table", O_RDONLY);
 	if (fd == -1)
 		return(print_error(5, NULL, NULL));
