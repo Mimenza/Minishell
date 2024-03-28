@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 12:43:41 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:10:22 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,28 @@
 # define SIMPLE 0
 # define DOUBLE 1
 
-# define FD 0
-# define OPTION_INDEX 1
-# define STATE 2
-# define T_TYPE 3
-# define ACTION 4
-# define NEXT_STATE 5
-# define NBR_RED 6
+# define START 0
+# define END 1
+# define CUR 2
+# define SIZE 3
+# define QUOTES 4
 
-# define STATES_LIST 0
-# define CURRENT_STATE 1
+// # define FD 0
+// # define OPTION_INDEX 1
+// # define STATE 2
+// # define T_TYPE 3
+// # define ACTION 4
+// # define NEXT_STATE 5
+// # define NBR_RED 6
+
+// # define STATES_LIST 0
+// # define CURRENT_STATE 1
+
+// # define STEP 0
+// # define C_STEP 1
+
+// # define DEF_OPT 0
+// # define AVAIL_OPT 1
 
 # define TRUE 1
 # define FALSE 0
@@ -186,7 +198,6 @@ int			ft_find_variable(char *match_var_name, t_var_list **variable_list, char **
 void		expand_var_ent(t_var_parsed_table **table, t_input **struct_input);
 
 //LOOK FOR DOLLARS 2
-
 int			ft_trim_var_dollar(char *token, t_var_list **variable_list, char **content, int index);
 void		ft_trim_var_dollar_aux(char *token, char **before, char **after, char **match_var_name, int index);
 int			ft_look_4_dollar(char const *token, t_var_list **variable_list, char **content);
@@ -200,20 +211,26 @@ void		read_table(t_input **struct_input);
 //ANALYZER
 void		create_tokens_analyzer(t_input **struct_input);
 void		print_token_list(t_token *tokens);
-void	add_last_token(t_token *last_token, t_token **tokens);
+void		add_last_token(t_token *last_token, t_token **tokens);
 
 //STEPS
 int			start_anaylizer(t_input **struct_input, t_token *input_token);
 void		print_cmd_contents(t_var_parsed_table **head);
 void 		remove_quotes_aux(char **cmd_ptr);
 
-//STEPS UTILS
+//STEPS UTILS 1
 int			find_state(t_states *states_list, int state_number, t_states **state);
 int			stack_size(t_token *stack);
 t_options	*find_option(t_states *state, int token_type);
 void		add_step(t_input *struct_input, t_options *options, t_token *tree_stack, t_token *input_token, t_step **c_step);
 t_token		*last_node_stack(t_token *stack);
+
+//STEPS UTILS 2
 void		ret_to_prev(t_step **c_step);
+void		remove_quotes_aux(char **cmd_ptr);
+void		remove_quotes(t_var_parsed_table **head);
+void		config_parsed_table(t_var_parsed_table **current);
+t_step		*init_first_step(t_input **struct_input, t_token *input_token);
 
 //ACTIONS
 void		apply_action(t_options *options, t_step **c_step, t_token *c_token, int *end_flag);
@@ -233,34 +250,42 @@ char		**ft_bash_split(char const *s, char c, int *control);
 int			tokenization(char *input, t_input **struct_input);
 
 //PIPEX_UTILS
-int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step);
+int		ft_verify_cmd(char **paths, t_var_parsed_table *cmd, t_input **env);
+int		ft_close_pipes(int fd[2]);
+int		relative_path(t_var_parsed_table *cmd, t_input **env);
 int		ft_here_doc(char *end, int fd);
 void	free_here_doc(char *delimiter, char *output, char *line, int *outfile);
-int		ft_close_pipes(int fd[2]);
 
 //BUILT_IN
 void	ft_echo(char **args, int fd);
 int		ft_pwd(t_input **env);
+int		get_path_utils(char **path, char **route, char *tmp, char *args);
+int		get_path(char *args, t_input **env);
 int		ft_cd(char **args, t_input **env);
-void	add_var(char *name, t_var_list **env, char *content);
+
+char				*ft_get_path_line(char **env);
+void				ft_son_process(t_var_parsed_table *arg, t_input **struct_input, t_step *step);
+t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2]);
+int					ft_is_built_in(t_var_parsed_table	*cmd_list);
+void				ft_make_process(t_var_parsed_table *cmd, int fd[2], t_input **struct_input, t_step *step);
+void				file_permissions(char *name, int type);
+int					pipex(t_input **struct_input, t_step *step);
+char				*ft_getenv(t_var_list **list, char *name);
+int					ft_strcmp(const char *s1, const char *s2);
+
+//BUILT_IN_UTILS
+void	ft_empty_export_utils(t_var_list *current, t_var_list **env, t_var_list	*name, int *size);
 void	ft_empty_export(t_var_list **env);
 int		ft_export(char	*var, t_input **struct_input);
-// int		ft_built_in(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, int mode, t_step *step);
+void	ft_eexit(char **arg, t_input **struct_input, t_step *step);
+void	ft_unset(char *name, t_input **struct_input);
+
+//BUILT_IN_UTILS2
+void	add_var_utils(char *name, char *content, t_var_list	*current, t_var_list *new);
+void 	add_var(char *name, t_var_list **env, char *content);
+int		ft_built_in2(t_var_parsed_table	*cmd_list, t_input **struct_input, int (*control)[2], t_step *step);
 int		ft_built_in1(t_var_parsed_table	*cmd_list, t_input **struct_input, int (*control)[2], t_step *step);
-int		get_path(char *args, t_input **env);
-void	ft_exit(int i);
-void	error_handle(int argc, char **argv);
-char	*ft_get_path(char **env, char *cmd);
-char	**ft_get_cmd(char *s1);
-char	*ft_get_path_line(char **env);
-void	ft_son_process(t_var_parsed_table *arg, t_input **struct_input, t_step *step);
-t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2]);
-int			ft_is_built_in(t_var_parsed_table	*cmd_list);
-void		ft_make_process(t_var_parsed_table *cmd, int fd[2], t_input **struct_input, t_step *step);
-void		file_permissions(char *name, int type);
-int			pipex(t_input **struct_input, t_step *step);
-char		*ft_getenv(t_var_list **list, char *name);
-int			ft_strcmp(const char *s1, const char *s2);
+int		ft_is_built_in(t_var_parsed_table	*cmd_list);
 
 //FREE
 void		free_all(t_input *struct_input, char *history);
@@ -270,5 +295,13 @@ void		free_parsed_table(t_var_parsed_table **table);
 
 //ERROR
 void		print_error(int id, char *args, t_input **struct_input);
+
+//CMD_HANDLE
+int			cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step);
+static char **cmd_handle_1(t_var_parsed_table *cmd, t_input **env, char **path_env);
+static int 	cmd_handle2(t_var_parsed_table *cmd, t_input **env, int *control);
+static int 	cmd_handle3(t_var_parsed_table *cmd, char *path_env, t_input **env, char **posible_paths);
+
+
 
 #endif

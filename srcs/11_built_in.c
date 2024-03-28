@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 12:42:15 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:30:47 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_echo(char **args, int fd)
 		control = TRUE;
 		args++;
 	}
-	while(args[++i])
+	while (args[++i])
 	{
 		if (i != 0)
 			ft_putchar_fd(' ', fd);
@@ -42,7 +42,7 @@ int	ft_pwd(t_input **env)
 	t_var_list	*current;
 
 	current = (*env)->ent_var;
-	while(ft_strcmp(current->name, "PWD") != 0)
+	while (ft_strcmp(current->name, "PWD") != 0)
 		current = current->next;
 	printf("%s\n", current->content);
 	return (0);
@@ -55,11 +55,11 @@ int	get_path_utils(char **path, char **route, char *tmp, char *args)
 	i = -1;
 	path = ft_split(args, '/');
 	if (!path)
-		return(1);
+		return (1);
 	*route = getcwd(NULL, 0);
-	while (path[++i])//rutas relativas
+	while (path[++i])
 	{
-		if((ft_strcmp(path[i], "..") == 0))
+		if ((ft_strcmp(path[i], "..") == 0))
 		{
 			tmp = *route;
 			*route = ft_substr(*route, 0, ft_strrchr(*route, '/') - *route);
@@ -70,7 +70,8 @@ int	get_path_utils(char **path, char **route, char *tmp, char *args)
 			*route = ft_strjoin(*route, "/", 3);
 			*route = ft_strjoin(*route, path[i], 3);
 			if (access(*route, X_OK) != 0)
-				return(print_error(8, NULL, NULL), free(*route), free_double(path), 1);
+				return (print_error(8, NULL, NULL), \
+				free(*route), free_double(path), 1);
 		}
 	}
 	return (free_double(path), 0);
@@ -85,24 +86,24 @@ int	get_path(char *args, t_input **env)
 	size_t		i;
 	t_var_list	*current;
 
-	i =  -1;
+	i = -1;
 	current = (*env)->ent_var;
-	while(ft_strcmp(current->name, "PWD") != 0)
+	while (ft_strcmp(current->name, "PWD") != 0)
 		current = current->next;
-	if(args[0] == '/')//rutas absolutas
+	if (args[0] == '/')
 	{
 		if (access(args, X_OK) != 0)
-			return(print_error(8, NULL, NULL), 1);
+			return (print_error(8, NULL, NULL), 1);
 		chdir(args);
 		ft_pwd(env);
 		current->content = ft_strdup(args);
-		return(0);
+		return (0);
 	}
-	if (get_path_utils(path, &route,tmp, args) != 0)
+	if (get_path_utils(path, &route, tmp, args) != 0)
 		return (1);
 	tmp = current->content;
 	current->content = ft_strdup(route);
-	return(chdir(route), free(tmp), free(route), 0);
+	return (chdir(route), free(tmp), free(route), 0);
 }
 
 //Custom cd funcion
@@ -114,7 +115,7 @@ int	ft_cd(char **args, t_input **env)
 
 	i = 0;
 	current = (*env)->ent_var;
-	while(ft_strcmp(current->name, "PWD") != 0)
+	while (ft_strcmp(current->name, "PWD") != 0)
 		current = current->next;
 	while (args[i])
 		i++;
@@ -123,306 +124,13 @@ int	ft_cd(char **args, t_input **env)
 	else
 	{
 		home = getenv("HOME");
-		if(access(home, X_OK) == 0)
+		if (access(home, X_OK) == 0)
 		{
 			if (chdir(home) != 0)
-				return(1);
+				return (1);
 		}
 		free(current->content);
 		current->content = ft_strdup(home);
 	}
-	return(0);
-}
-
-void	add_var_utils(char *name, char *content, t_var_list	*current, t_var_list *new)
-{
-	while(current->next)
-		current = current->next;
-	new->name = ft_strdup(name);
-	if (content)
-		new->content = ft_strdup(content);
-	else
-		new->content = NULL;
-	current->next = new;
-	new->next = NULL;
-	new->is_printed = 0;
-}
-
-//Adds a variable to the list
-void add_var(char *name, t_var_list **env, char *content)
-{
-	t_var_list	*current;
-	t_var_list	*new;
-	
-	current = *env;
-	while(current)
-	{
-		if (ft_strcmp(name, current->name) == 0)
-		{
-			free(current->content);//OTRO APAÑO GUARRO PA LA COLE
-			if (content)
-				current->content = ft_strdup(content);
-			return ;
-		}
-		current = current->next;
-	}
-	new = (t_var_list *)malloc(sizeof(t_var_list));
-	if(!new)
-		return ;
-	current = *env;
-	add_var_utils(name, content, current, new);
-}
-
-void	ft_empty_export_utils(t_var_list *current, t_var_list **env, t_var_list	*name, int *size)
-{
-	current = *env;
-	name = current;
-	while(name->is_printed == 1 && name->next)
-		name = name->next;
-	while(current)
-	{
-		if(ft_strcmp(name->name, current->name) > 0 && current->is_printed == 0)
-			name = current;
-		current = current->next;
-	}
-	name->is_printed = 1;
-	if (name->content)
-		printf("declare -x %s=%s\n", name->name, name->content);
-	else
-		printf("declare -x %s\n", name->name);
-	(*size)--;
-}
-
-void	ft_empty_export(t_var_list **env)
-{
-	t_var_list 	*save;
-	t_var_list	*current;
-	t_var_list	*name;
-	int			size;
-
-	size = 0;
-	current = *env;
-	while(current)
-	{
-		size++;
-		current = current->next;
-	}
-	while(size > 1)
-		ft_empty_export_utils(current, env, name, &size);
-	current = *env;
-	while(current)
-	{
-		current->is_printed = 0;
-		current = current->next;
-	}
-}
-
-
-//Exports the var to the env
-int	ft_export(char *var, t_input **struct_input)
-{
-	char		*equal;
-	char		*name;
-	char		*content;
-
-	if (var && (var[0] == '_' || ft_isalpha(var[0]) == 0 || var[0] == '?'))
-		return(print_error(1, NULL, struct_input), FALSE);
-	if (var)
-		equal = ft_strchr(var, '=');
-	if(!var)
-		ft_empty_export(&(*struct_input)->ent_var);
-	else if (equal)
-	{
-		name = ft_substr(var, 0, equal - var);
-		add_var(name, &(*struct_input)->ent_var, (equal + 1));
-		free(name);
-	}
-	else
-		add_var(var, &(*struct_input)->ent_var, NULL);
-	return (TRUE);
-}
-
-//Custom exit funcion
-void	ft_eexit(char **arg, t_input **struct_input, t_step *step)
-{
-	int num;
-	int i;
-
-	i = -1;
-	if (!arg[1])
-	{
-		free_all(*struct_input, (*struct_input)->input);
-		free_steps(step);
-		exit(0);
-	}
-	while (arg[1][++i])
-	{
-		if (!ft_isdigit((int)arg[1][i]))
-		{
-			printf("exit: %s: numeric argument required\n", arg[1]);
-			free_all(*struct_input, (*struct_input)->input);
-			free_steps(step);
-			exit(255);
-		}
-	}
-	num = ft_atoi(arg[1]);
-	free_all(*struct_input, (*struct_input)->input);
-	free_steps(step);
-	printf("exit\n");
-	exit(num % 256);
-}
-
-//Custom unset function
-void	ft_unset(char *name, t_input **struct_input)
-{
-	t_var_list *current;
-	t_var_list *tmp;
-
-	if (!name || ft_strlen(name) == 0)
-		return ;
-	current = (*struct_input)->ent_var;
-	if (ft_strcmp(current->name, name) == 0)
-	{
-		(*struct_input)->ent_var = current->next;
-		return (free(current->content), free(current->name), free(current));
-	}
-	while(current->next)
-	{
-		if (ft_strcmp(current->next->name, name) == 0)
-		{
-			tmp = current->next;
-			if(current->next->next)
-				current->next = current->next->next;
-			else
-				current->next = NULL;
-			return (free(tmp), free(tmp->name), free(tmp->content));
-		}
-		current = current->next;
-	}
-}
-
-//Main built in function
-// int	ft_built_in(t_var_parsed_table	*cmd_list, t_input **struct_input, int *control, int mode, t_step *step)
-// {
-// 	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		else if(mode == 2)
-// 			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out);
-// 		else
-// 			ft_echo(cmd_list->cmd_splited, 1);
-// 		*control = FALSE;
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_pwd(struct_input);
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_cd(cmd_list->cmd_splited, struct_input);
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_export(cmd_list->cmd_splited[1], struct_input);
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_unset(cmd_list->cmd_splited[1], struct_input);
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_print_var(*struct_input);
-// 	}
-// 	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
-// 	{
-// 		if(mode == 0)
-// 			return(TRUE);
-// 		*control = FALSE;
-// 		ft_eexit(cmd_list->cmd_splited, struct_input, step);
-// 	}
-// 	return (0);
-// }
-int	ft_built_in2(t_var_parsed_table	*cmd_list, t_input **struct_input, int (*control)[2], t_step *step)
-{
-	if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_export(cmd_list->cmd_splited[1], struct_input);
-	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_unset(cmd_list->cmd_splited[1], struct_input);
-	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_print_var(*struct_input);
-	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_eexit(cmd_list->cmd_splited, struct_input, step);
-	}
 	return (0);
-}
-
-int	ft_built_in1(t_var_parsed_table	*cmd_list, t_input **struct_input, int (*control)[2], t_step *step)
-{
-	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
-	{
-		if ((*control)[1] == FALSE)
-			ft_echo(cmd_list->cmd_splited, 1);
-		else
-			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out);
-		(*control)[0] = FALSE;
-	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_pwd(struct_input);
-	}
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
-	{
-		(*control)[0] = FALSE;
-		ft_cd(cmd_list->cmd_splited, struct_input);
-	}
-	else
-		ft_built_in2(cmd_list, struct_input, control, step);
-	return (0);
-}
-
-int	ft_is_built_in(t_var_parsed_table	*cmd_list)
-{
-	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "cd") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "unset") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "env") == 0)
-		return(TRUE);
-	else if(ft_strcmp(cmd_list->cmd_splited[0], "exit") == 0)
-		return(TRUE);
-	return (FALSE);
 }

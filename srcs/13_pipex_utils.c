@@ -6,10 +6,9 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 11:42:52 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:13:38 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../incs/minishell.h"
 
@@ -20,14 +19,14 @@ int	ft_verify_cmd(char **paths, t_var_parsed_table *cmd, t_input **env)
 	char	*str;
 	char	*str_tmp;
 	int		control;
-	
+
 	control = TRUE;
 	i = -1;
 	if (ft_strcmp(cmd->cmd_splited[0], ".") == 0)
-		return(print_error(12, cmd->cmd_splited[0], env), FALSE);
+		return (print_error(12, cmd->cmd_splited[0], env), FALSE);
 	else if (ft_strcmp(cmd->cmd_splited[0], "..") == 0)
-		return(print_error(10, cmd->cmd_splited[0], env), FALSE);
-	while(paths[++i])
+		return (print_error(10, cmd->cmd_splited[0], env), FALSE);
+	while (paths[++i])
 	{
 		str_tmp = ft_strjoin("/", cmd->cmd_splited[0], 1);
 		str = ft_strjoin(paths[i], str_tmp, 5);
@@ -36,7 +35,7 @@ int	ft_verify_cmd(char **paths, t_var_parsed_table *cmd, t_input **env)
 			cmd->path = str;
 			return (TRUE);
 		}
-	free(str);
+		free(str);
 	}
 	print_error(10, cmd->cmd_splited[0], env);
 	return (FALSE);
@@ -56,148 +55,30 @@ int	relative_path(t_var_parsed_table *cmd, t_input **env)
 {
 	char		**path;
 	char		*route;
-	char		*route_tmp;
 	size_t		i;
 
 	i = -1;
 	path = ft_split(cmd->cmd_splited[0], '/');
 	route = getcwd(NULL, 0);
-	while (path[++i])//rutas relativas
+	while (path[++i])
 	{
-		if((ft_strcmp(path[i], "..") == 0))
+		if ((ft_strcmp(path[i], "..") == 0))
 		{
 			route = ft_substr(route, 0, ft_strrchr(route, '/') - route);
 			chdir(route);
 		}
 		else if (!(path[i][0] == '.' && ft_strlen(path[i]) == 1))
 		{
-			route_tmp = ft_strjoin(route, "/", 3);
-			route = ft_strjoin(route_tmp, path[i], 3);
+			route = ft_strjoin(route, "/", 3);
+			route = ft_strjoin(route, path[i], 3);
 			if (access(route, X_OK) != 0)
-				return (print_error(8, cmd->cmd_splited[0], env), free(route), free_double(path), FALSE);
+				return (print_error(8, cmd->cmd_splited[0], \
+				env), free(route), free_double(path), FALSE);
 		}
 	}
 	cmd->path = route;
 	return (free_double(path), TRUE);
 }
-
-//Joins the posible paths and checks if there is any available
-int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)//LA ORIGINAL
-{
-	t_var_parsed_table	*cmd;
-	char				*path_env;
-	char				**posible_paths;
-	int					control;
-	struct stat			statbuf;
-
-	cmd = *cmd_list;
-	if (!cmd->cmd)
-		return (FALSE);
-	else if (ft_strlen(cmd->cmd_splited[0]) == 0)
-		return (print_error(10, cmd->cmd_splited[0], env), FALSE);
-	control = TRUE;
-	path_env = ft_getenv(&(*env)->ent_var, "PATH");
-	if (!path_env)
-		return(FALSE);
-	posible_paths = ft_split(path_env, ':');
-	while(cmd)
-	{
-		if (cmd->cmd == NULL)
-			break;
-		if (ft_is_built_in(cmd) == TRUE)
-			control = TRUE;
-		else if (cmd->cmd_splited[0][0] == '/')
-		{
-			if (stat(cmd->cmd_splited[0], &statbuf) == -1)
-				return (print_error(8, cmd->cmd_splited[0], env), free_double(posible_paths), free(path_env), FALSE);
-			if (access(cmd->cmd_splited[0], X_OK) != 0)
-			{
-				print_error(10, cmd->cmd_splited[0], env);
-				control = FALSE;
-			}
-			if (S_ISDIR(statbuf.st_mode))
-				return(print_error(14, NULL, env), free_double(posible_paths), free(path_env), FALSE);
-			cmd->path = ft_strdup(cmd->cmd_splited[0]);
-		}
-		else if (cmd->cmd_splited[0][0] == '.' && cmd->cmd_splited[0][1] == '/')
-		{
-			if (relative_path(cmd, env) == FALSE)
-				control = FALSE;
-		}
-		else
-		{
-			if (ft_verify_cmd(posible_paths, cmd, env) == FALSE)
-				control = FALSE;
-		}
-		if (control == FALSE)
-			return(free_double(posible_paths), free(path_env), FALSE);
-		cmd = cmd->next;
-	}
-	return (free(path_env), free_double(posible_paths), TRUE);
-}
-
-// int cmd_handle1(int *control, t_input **env, t_var_parsed_table	*cmd, char **posible_paths)
-// {
-// 	struct stat	statbuf;
-
-// 	if (ft_is_built_in(cmd) == TRUE)
-// 			*control = TRUE;
-// 	else if (cmd->cmd_splited[0][0] == '/')
-// 	{
-// 		if (stat(cmd->cmd_splited[0], &statbuf) == -1)
-// 			return (print_error(8, cmd->cmd_splited[0], env), FALSE);
-// 		if (access(cmd->cmd_splited[0], X_OK) != 0)
-// 		{
-// 			print_error(10, cmd->cmd_splited[0], env);
-// 			*control = FALSE;
-// 		}
-// 		if (S_ISDIR(statbuf.st_mode))
-// 			return(print_error(14, NULL, env), FALSE);
-// 		cmd->path = ft_strdup(cmd->cmd_splited[0]);
-// 	}
-// 	else if (cmd->cmd_splited[0][0] == '.' && cmd->cmd_splited[0][1] == '/')
-// 	{
-// 		if (relative_path(cmd, env) == FALSE)
-// 			*control = FALSE;
-// 	}
-// 	return (TRUE);
-// }
-
-// int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)
-// {
-// 	t_var_parsed_table	*cmd;
-// 	char				*path_env;
-// 	char				**posible_paths;
-// 	int					control;
-
-// 	cmd = *cmd_list;
-// 	if (!cmd->cmd)
-// 		return (FALSE);
-// 	else if (ft_strlen(cmd->cmd_splited[0]) == 0)
-// 		return (print_error(10, cmd->cmd_splited[0], env), FALSE);
-// 	control = TRUE;
-// 	path_env = ft_getenv(&(*env)->ent_var, "PATH");
-// 	if (!path_env)
-// 		return(FALSE);
-// 	posible_paths = ft_split(path_env, ':');
-// 	while(cmd)
-// 	{
-// 		if (cmd->cmd == NULL)
-// 			break;
-// 		if (cmd_handle1(&control, env, cmd, posible_paths) == FALSE)
-// 			return(free_double(posible_paths), free(path_env), FALSE);
-// 		else
-// 		{
-// 			if (ft_verify_cmd(posible_paths, cmd, env) == FALSE)
-// 				control = FALSE;
-// 		}
-// 		if (control == FALSE)
-// 			return(free_double(posible_paths), free(path_env), FALSE);
-// 		cmd = cmd->next;
-// 	}
-// 	return (free(path_env), free_double(posible_paths), TRUE);
-// }
-
 
 //Custom here doc function
 int	ft_here_doc(char *end, int fd)
@@ -216,7 +97,7 @@ int	ft_here_doc(char *end, int fd)
 	delimiter = ft_strjoin(end, "\n", 1);
 	while (1)
 	{
-		write(1,"Minishell heredoc> ", 19);
+		write(1, "Minishell heredoc> ", 19);
 		line = get_next_line(fd);
 		if (ft_strcmp(delimiter, line) == 0)
 			break ;
