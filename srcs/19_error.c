@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:04:36 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/25 17:12:11 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:45:45 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@ void	print_error(int id, char *args, t_input **input)
 		printf("ERROR: no such file or directory: %s\n", args);
 	else if (id == 9)
 		printf("ERROR: failed opening the files\n");
-	else if (id == 10)
+	else
+		print_error_aux(id, args, input);
+}
+
+void	print_error_aux(int id, char *args, t_input **input)
+{
+	if (id == 10)
 	{
 		ft_var_found(&(*input)->ent_var, "?", "127");
 		printf("ERROR: command %s not found\n", args);

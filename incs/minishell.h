@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 16:16:44 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:45:11 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,7 +343,7 @@ void	free_all(t_input *struct_input, char *history);
 
 //ERROR
 void		print_error(int id, char *args, t_input **struct_input);
-
+void		print_error_aux(int id, char *args, t_input **input);
 //CMD_HANDLE
 int			cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step);
 static char **cmd_handle_1(t_var_parsed_table *cmd, t_input **env, char **path_env);
