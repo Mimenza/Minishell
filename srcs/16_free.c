@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   16_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:17:49 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/25 17:06:01 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:10:11 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // Función para liberar un árbol de tokens recursivamente
 void free_tree(t_token *root)
 {
-	if (root == NULL)
+	if (root == NULL || (root->type < -2 || root->type > 110))
 		return;
-
+	
 	free_tree(root->left);
 	free_tree(root->middle);
 	free_tree(root->right);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   08_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 12:46:27 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:20:57 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 }
 
 //Avail opt of the parsed table
-void	avail_opt(t_input **s_input, t_step **c_step, t_token **c_token, int *end_flag, t_options *a_opt)
+void	avail_opt(t_input **s_input, t_step **c_step, t_token **c_token, \
+t_options *a_opt)
 {
-	apply_action(a_opt, c_step, *c_token, end_flag);
 	add_step(*s_input, a_opt, (*c_step)->tree_stack, (*c_step)->input, c_step);
 	if ((*c_step)->input && ((*c_token)->type >= 100 || \
 	((*c_token)->type >= 1 && (*c_token)->type <= 5)))
@@ -65,7 +65,10 @@ int	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
 		(d_opt == NULL) && (c_token->type >= 100) && (c_step->state_nbr != 0)))
 			ret_to_prev(&c_step);
 		else if (a_opt != NULL)
-			avail_opt(s_input, &c_step, &c_token, &end_flag, a_opt);
+		{
+			apply_action(a_opt, &c_step, c_token, &end_flag);
+			avail_opt(s_input, &c_step, &c_token, a_opt);
+		}
 		else if (a_opt == NULL && d_opt != NULL)
 			null_opt(&c_step, &c_token, &end_flag, d_opt);
 		else if (a_opt == NULL && d_opt == NULL)

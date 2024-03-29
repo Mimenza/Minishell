@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/28 11:19:41 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:25 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,13 @@ typedef struct	s_step
 {
 	int				step_nbr;			//nbr of the current step
 	int				state_nbr;			//nbr of the current state
-	struct s_states *state;			//ptr to the current state
+	struct s_states *state;				//ptr to the current state
 	int				option_nbr;			//nbr of the current option of the state
 	struct s_token	*tree_stack;		//ptr to the tree/ stack
 	struct s_token	*input;				//ptr to the input
 
-	struct s_step	*next;			//ptr to the next step
-	struct s_step	*prev;			//ptr to the prev step
+	struct s_step	*next;				//ptr to the next step
+	struct s_step	*prev;				//ptr to the prev step
 }				t_step;
 
 

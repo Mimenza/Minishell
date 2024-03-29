@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:31:53 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 13:37:26 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:13:30 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	add_space(char **input, char c, t_input **struct_input)
 	char	*s1;
 	char	*first;
 	char	*last;
-	char	*tmp;
 
 	s = ft_strchr(*input, c);
 	if (!s)
