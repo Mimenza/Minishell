@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   20_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:53:19 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 09:55:27 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:41:43 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void print_step_list(t_step *step)
+void	print_step_list(t_step *step)
 {
 	printf("------------START------------\n");
 	while (step != NULL)
@@ -32,10 +32,10 @@ void print_step_list(t_step *step)
 }
 
 //Prints the parsed table content
-void print_cmd_contents(t_var_parsed_table **head)
+void	print_cmd_contents(t_var_parsed_table **head)
 {
-	t_var_parsed_table *current = *head;
-	int i;
+	t_var_parsed_table	*current = *head;
+	int					i;
 	if (current == NULL)
 		printf("NO TENGO NADA\n");
 	while (current != NULL)
@@ -67,7 +67,7 @@ void print_cmd_contents(t_var_parsed_table **head)
 }
 
 // Function to display the structure tree
-void display_structure_tree(t_token *root, int depth)
+void	display_structure_tree(t_token *root, int depth)
 {
 	if (root == NULL)
 		return;

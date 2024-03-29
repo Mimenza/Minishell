@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_steps_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:58:27 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 12:36:54 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:56:13 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,30 @@ void	ret_to_prev(t_step **c_step)
 //Configs the parsed table (fd OUT fd IN)
 void	config_parsed_table(t_var_parsed_table **current)
 {
-	int					i;
-	int					max;
+	int					array[2];
 	int					control[2];
 	t_var_parsed_table	*f_node;
 
-	i = 0;
-	max = 0;
+	array[I] = 0;
+	array[MAX] = 0;
 	control[0] = TRUE;
 	control[1] = TRUE;
 	while ((*current)->prev != NULL)
 	{
-		max++;
+		array[MAX]++;
 		(*current) = (*current)->prev;
 	}
 	f_node = *current;
 	while (f_node != NULL)
 	{
-		if (i == 0 && (f_node->fd_in == -1))
+		if (array[I] == 0 && (f_node->fd_in == -1))
 			f_node->fd_in = 0;
 		if (f_node->cmd != NULL)
 			f_node->cmd_splited = ft_bash_split(f_node->cmd, SPACE_M, control);
-		if (i == max && f_node->fd_out == -1)
+		if (array[I] == array[MAX] && f_node->fd_out == -1)
 			f_node->fd_out = 1;
 		f_node = f_node->next;
-		i++;
+		array[I]++;
 	}
 }
 
@@ -80,3 +79,33 @@ t_step	*init_first_step(t_input **struct_input, t_token *input_token)
 	first_step->prev = NULL;
 	return (first_step);
 }
+//LA ORIGINAL
+// void	config_parsed_table(t_var_parsed_table **current)
+// {
+// 	int					i;
+// 	int					max;
+// 	int					control[2];
+// 	t_var_parsed_table	*f_node;
+
+// 	i = 0;
+// 	max = 0;
+// 	control[0] = TRUE;
+// 	control[1] = TRUE;
+// 	while ((*current)->prev != NULL)
+// 	{
+// 		max++;
+// 		(*current) = (*current)->prev;
+// 	}
+// 	f_node = *current;
+// 	while (f_node != NULL)
+// 	{
+// 		if (i == 0 && (f_node->fd_in == -1))
+// 			f_node->fd_in = 0;
+// 		if (f_node->cmd != NULL)
+// 			f_node->cmd_splited = ft_bash_split(f_node->cmd, SPACE_M, control);
+// 		if (i == max && f_node->fd_out == -1)
+// 			f_node->fd_out = 1;
+// 		f_node = f_node->next;
+// 		i++;
+// 	}
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_actions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:12:20 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 12:46:46 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:59:20 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,89 @@ t_token *c_token, int *end)
 	else if (action_type == 2)
 		*end = TRUE;
 }
+
+//LA ORIGINAL
+//Reduce the tokens of the stack
+// void	ft_reduce(t_options *options, t_step **c_step)
+// {
+// 	t_token	*token_4;
+// 	t_token	*token_3;
+// 	t_token	*token_2;
+// 	t_token	*token_1;
+// 	t_token	*join_token;
+// 	t_token	*start_stack;
+
+// 	join_token = NULL;
+// 	if (options->nbr_red == 1)
+// 	{
+// 		token_1 = last_node_stack((*c_step)->tree_stack);
+// 		token_1->type = options->next_state;
+// 	}
+// 	else if (options->nbr_red == 2)
+// 	{
+// 		start_stack = (*c_step)->tree_stack;
+// 		join_token = (t_token *)malloc(sizeof(t_token));
+// 		if (join_token == NULL)
+// 			return;
+// 		join_token->data = ft_strdup("Joined token");
+// 		join_token->type = options->next_state;
+// 		join_token->left = NULL;
+// 		join_token->right = NULL;
+// 		join_token->middle = NULL;
+// 		join_token->next = NULL;
+// 		token_1 = last_node_stack(start_stack);
+// 		token_2 = start_stack;
+// 		token_3 = start_stack;
+// 		while (token_2->next != token_1)
+// 			token_2 = token_2->next;
+// 		while ((token_3->next != token_2) && (token_3 != token_2))
+// 			token_3 = token_3->next;
+// 		join_token->left = token_2;
+// 		join_token->right = token_1;
+// 		join_token->left->next = NULL;
+// 		join_token->right->next = NULL;
+// 		if (token_2 == token_3)
+// 		{
+// 			(*c_step)->tree_stack = NULL;
+// 			(*c_step)->tree_stack = join_token;
+// 		}
+// 		else
+// 			token_3->next = join_token;
+// 	}
+// 	else if (options->nbr_red == 3)
+// 	{
+// 		start_stack = (*c_step)->tree_stack;
+// 		join_token = (t_token *)malloc(sizeof(t_token));
+// 		if (join_token == NULL)
+// 			return;
+// 		join_token->data = ft_strdup("Joined token");
+// 		join_token->type = options->next_state;
+// 		join_token->left = NULL;
+// 		join_token->right = NULL;
+// 		join_token->middle = NULL;
+// 		join_token->next = NULL;
+// 		token_1 = last_node_stack(start_stack);
+// 		token_2 = start_stack;
+// 		token_3 = start_stack;
+// 		token_4 = start_stack;
+// 		while (token_2->next != token_1)
+// 			token_2 = token_2->next;
+// 		while ((token_3->next != token_2) && (token_3 != token_2))
+// 			token_3 = token_3->next;
+// 		while ((token_4->next != token_3) && (token_4 != token_3) && (token_4 != token_2))
+// 			token_4 = token_4->next;
+// 		join_token->left = token_3;
+// 		join_token->middle = token_2;
+// 		join_token->right = token_1;
+// 		join_token->left->next = NULL;
+// 		join_token->middle->next = NULL;
+// 		join_token->right->next = NULL;
+// 		if (token_3 == token_4)
+// 		{
+// 			(*c_step)->tree_stack = NULL;
+// 			(*c_step)->tree_stack = join_token;
+// 		}
+// 		else
+// 			token_4->next = join_token;
+// 	}
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:21:51 by emimenza          #+#    #+#             */
-/*   Updated: 2023/11/09 10:55:42 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:19:18 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_clean_list(t_list_gnl **list)
 	ft_free_list(list, new_node, tmp, 0);
 }
 
-	//returns a char containing the line clean
+//returns a char containing the line clean
 char	*ft_get_line(t_list_gnl *list)
 {
 	char	*line;

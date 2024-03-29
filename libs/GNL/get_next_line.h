@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:22:02 by emimenza          #+#    #+#             */
-/*   Updated: 2023/11/08 09:19:55 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:18:06 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_list_gnl
 {

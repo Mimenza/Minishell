@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/28 11:24:40 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:02:01 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,30 @@
 # define EF 5		//error flag
 # define FD 6		//file descriptor
 
-// # define FD 0
-// # define OPTION_INDEX 1
-// # define STATE 2
-// # define T_TYPE 3
-// # define ACTION 4
-// # define NEXT_STATE 5
-// # define NBR_RED 6
 
+//05_LOOK_FOR_DOLARS_2
+# define AFTER 0
+# define BEFORE 1
+//READ_TABLE
+# define F_D 0
+# define OPTION_INDEX 1
+# define STATE 2
+# define T_TYPE 3
+# define ACTION 4
+# define NEXT_STATE 5
+# define NBR_RED 6
+# define STATE_LIST 0
+# define C_STATE 1
+//STEP_UTILS_2
+# define I 0
+# define MAX 1
+//10_ACTIONS
+# define TOKEN_1 0
+# define TOKEN_2 1
+# define TOKEN_3 2
+# define TOKEN_4 3
+# define START_STACK 4
+# define JOIN_TOKEN 5
 // # define STATES_LIST 0
 // # define CURRENT_STATE 1
 
@@ -207,7 +223,8 @@ void		expand_var_ent(t_var_parsed_table **table, t_input **struct_input);
 
 //LOOK FOR DOLLARS 2
 int			ft_trim_var_dollar(char *token, t_var_list **variable_list, char **content, int index);
-void		ft_trim_var_dollar_aux(char *token, char **before, char **after, char **match_var_name, int index);
+// void		ft_trim_var_dollar_aux(char *token, char **before, char **after, char **match_var_name, int index);
+void		ft_trim_var_dollar_aux(char *token, char *(*src)[3], char **var_name, int index);
 int			ft_look_4_dollar(char const *token, t_var_list **variable_list, char **content);
 void		ft_look_4_d_aux(char **content, int i, int max, t_var_list **v_list);
 
