@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 15:17:13 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:16:44 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,14 @@
 
 // # define DEF_OPT 0
 // # define AVAIL_OPT 1
+//14_BASH_SPLIT
+# define I 0
+# define J 1
+# define START_ 2
+# define END_ 3
 
-# define TRUE 1
 # define FALSE 0
+# define TRUE 1
 # define ERROR -1
 # define SPACE_M 32
 # define REDUCE -1
@@ -277,7 +282,7 @@ void	create_table(t_token *tree, t_var_parsed_table **table_node);
 int		*set_flags(t_token *tree, int *array);
 
 //BASH SPLIT
-static void	ignore_separator(char const *s, int *control, int *i);
+static void	ignore_separator(char const *s, int *control, int *i, int mode);
 static	int	ft_count(char const *s, char c, int *control);
 static void	freeall(char **splits);
 static int	check_str(char **str, int j);
