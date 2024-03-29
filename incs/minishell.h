@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 12:47:28 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:28:37 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,9 +257,12 @@ void		remove_quotes(t_var_parsed_table **head);
 void		config_parsed_table(t_var_parsed_table **current);
 t_step		*init_first_step(t_input **struct_input, t_token *input_token);
 
-//ACTIONS
+//ACTIONS_UTILS
 void		apply_action(t_options *options, t_step **c_step, t_token *c_token, int *end_flag);
 
+//ACTIONS
+void	ft_reduce(t_options *options, t_step **c_step);
+void	ft_shift(t_token **stack, t_token **input);
 //READ_TREE
 void		walk_tree(t_var_parsed_table **table, t_token *tree);
 void		read_tree(t_token *tree, t_var_parsed_table **table_node, int mode);

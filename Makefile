@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+         #
+#    By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 11:36:49 by emimenza          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/03/28 11:32:31 by anurtiag         ###   ########.fr        #
-=======
-#    Updated: 2024/03/29 10:46:56 by emimenza         ###   ########.fr        #
->>>>>>> 34d8a4200da0ab4305eda85919015449318ad5eb
+#    Updated: 2024/03/29 14:25:31 by anurtiag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +29,7 @@ RLFLAGS		=	-I /Users/$(USER)/.brew/opt/readline/include
 NAME		=	minishell
 
 #Ficheros
-SRC_FILES	=	00_main 00_main_utils 01_history 02_signal 03_variables 04_look_for_equals 05_look_for_dollars_1 05_look_for_dollars_2 06_read_table 07_analyzer 08_steps 09_remove_quotes 09_steps_utils_1 09_steps_utils_2 10_actions 11_built_in 11_built_in_utils 11_built_in_utils2 12_read_tree 12_read_tree_utils 13_pipex_utils 14_bash_split 15_tokenization 16_free 17_pipex 18_process 19_error 20_print 21_cmd_handle
+SRC_FILES	=	00_main 00_main_utils 01_history 02_signal 03_variables 04_look_for_equals 05_look_for_dollars_1 05_look_for_dollars_2 06_read_table 07_analyzer 08_steps 09_remove_quotes 09_steps_utils_1 09_steps_utils_2 10_actions 10_actions_utils 11_built_in 11_built_in_utils 11_built_in_utils2 12_read_tree 12_read_tree_utils 13_pipex_utils 14_bash_split 15_tokenization 16_free 17_pipex 18_process 19_error 20_print 21_cmd_handle
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 LIBFT		=	libs/Libft
