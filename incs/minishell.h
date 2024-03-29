@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 14:28:37 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:17:13 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,7 @@ void	ft_shift(t_token **stack, t_token **input);
 void		walk_tree(t_var_parsed_table **table, t_token *tree);
 void		read_tree(t_token *tree, t_var_parsed_table **table_node, int mode);
 t_var_parsed_table	*init_parsed_table(t_var_parsed_table *prev_table);
+void		free_parsed_table(t_var_parsed_table **table);;
 
 //READ TREE UTILS
 int		*reset_statics(int mode, int *array, t_var_parsed_table **table_node);
@@ -324,10 +325,16 @@ int		ft_built_in1(t_var_parsed_table	*cmd_list, t_input **struct_input, int (*co
 int		ft_is_built_in(t_var_parsed_table	*cmd_list);
 
 //FREE
-void		free_all(t_input *struct_input, char *history);
-void		free_steps(t_step *steps);
-void		free_double(char **double_ptr);
-void		free_parsed_table(t_var_parsed_table **table);
+void		free_tree(t_token *root);
+void		free_token_tree(t_token *head);
+void		free_options(t_options *options);
+
+//FREE_2
+void	free_states(t_states *states);
+void	free_double(char **double_ptr);
+void	free_tokens(t_token *token);
+void	free_steps(t_step *steps);
+void	free_all(t_input *struct_input, char *history);
 
 //ERROR
 void		print_error(int id, char *args, t_input **struct_input);
