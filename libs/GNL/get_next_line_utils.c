@@ -6,14 +6,15 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:22:23 by emimenza          #+#    #+#             */
-/*   Updated: 2023/11/08 09:21:52 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:55:07 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 	//CLEANS ALL THE NODES OF THE LIST AND SET NEW NODE AS FIRST IF HAS SMTH
-void	ft_free_list(t_list_gnl **list, t_list_gnl *new_node, char *buf, int mode)
+void	ft_free_list(t_list_gnl **list, t_list_gnl \
+*new_node, char *buf, int mode)
 {
 	t_list_gnl	*tmp;
 
@@ -71,8 +72,8 @@ void	ft_copy_str(t_list_gnl *list, char *str)
 int	ft_size_to_newline(t_list_gnl *list)
 {
 	t_list_gnl	*current;
-	int		count;
-	char	*buffer;
+	int			count;
+	char		*buffer;
 
 	current = list;
 	count = 0;
@@ -98,7 +99,7 @@ int	ft_size_to_newline(t_list_gnl *list)
 int	ft_found_newline(t_list_gnl *list)
 {
 	t_list_gnl	*current;
-	char	*buffer;
+	char		*buffer;
 
 	current = list;
 	while (current != NULL)

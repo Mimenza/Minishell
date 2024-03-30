@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:22:02 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/28 13:18:06 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:55:28 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #  define BUFFER_SIZE 5
 # endif
 
-
 typedef struct s_list_gnl
 {
 	char				*buffer;
@@ -35,7 +34,8 @@ void		ft_copy_str(t_list_gnl *list, char *str);
 int			ft_size_to_newline(t_list_gnl *list);
 void		ft_clean_list(t_list_gnl **list);
 char		*get_next_line(int fd);
-void		ft_free_list(t_list_gnl **list, t_list_gnl *clean_node, char *buf, int mode);
+void		ft_free_list(t_list_gnl **list, t_list_gnl \
+*clean_node, char *buf, int mode);
 void		ft_create_list(t_list_gnl **list, int fd);
 
 #endif

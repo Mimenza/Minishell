@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:21:51 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/28 13:19:18 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:54:08 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_clean_list(t_list_gnl **list)
 {
 	t_list_gnl	*new_node;
 	t_list_gnl	*last_node;
-	char	*tmp;
-	int		i;
-	int		k;
+	char		*tmp;
+	int			i;
+	int			k;
 
 	tmp = malloc(BUFFER_SIZE + 1);
 	new_node = malloc(sizeof(t_list_gnl));
@@ -103,7 +103,7 @@ void	ft_create_list(t_list_gnl **list, int fd)
 char	*get_next_line(int fd)
 {
 	static t_list_gnl	*list;
-	char			*line;
+	char				*line;
 
 	if (!list)
 		list = NULL;
