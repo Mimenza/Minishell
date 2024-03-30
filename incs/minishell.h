@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 10:05:21 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 13:36:30 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define CUR 2
 # define SIZE 3
 # define QUOTES 4
-
+//READ_TREE
 # define FIRST 0	//first flag
 # define RTF 1		//redirection to flag
 # define RFF 2		//redirection from flag
@@ -275,11 +275,13 @@ t_var_parsed_table	*init_parsed_table(t_var_parsed_table *prev_table);
 void		free_parsed_table(t_var_parsed_table **table);;
 
 //READ TREE UTILS
-int		*reset_statics(int mode, int *array, t_var_parsed_table **table_node);
-void	init_append_tree(t_token *tree, int *first_time, t_var_parsed_table **table_node);
-void	set_fds(int *array, t_var_parsed_table **table_node);
-void	create_table(t_token *tree, t_var_parsed_table **table_node);
-int		*set_flags(t_token *tree, int *array);
+void		reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node);
+// int		(*reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node))[7];
+void		init_append_tree(t_token *tree, int *first_time, t_var_parsed_table **table_node);
+void		set_fds(int (*array)[7], t_var_parsed_table **table_node);
+void		create_table(t_token *tree, t_var_parsed_table **table_node);
+void		set_flags(t_token *tree, int (*array)[7]);
+// int		(*set_flags(t_token *tree, int (*array)[7]))[7];
 
 //BASH SPLIT
 static void	ignore_separator(char const *s, int *control, int *i, int mode);
