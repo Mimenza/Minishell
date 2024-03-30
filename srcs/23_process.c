@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 07:34:39 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/30 19:08:41 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:44:20 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
 	return (cmd);
 }
 
-static t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_list, int fd[2], \
-t_input **struct_input, t_step *step)
+static t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_list, \
+int fd[2], t_input **struct_input, t_step *step)
 {
 	if (cmd_list->pid == 0 && !cmd_list->next)
 	{

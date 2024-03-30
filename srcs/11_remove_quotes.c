@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:26:40 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:45:36 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,8 @@ void	remove_quotes(t_var_parsed_table **head)
 }
 
 //Handles the simple quotes
-static void	single_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
+static void	single_quote(char **cmd_ptr, int *control, \
+int *a, char **joined_tmp)
 {
 	char	*tmp;
 
@@ -142,7 +143,8 @@ static void	single_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp
 }
 
 //Handles the double quotes
-static void	double_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
+static void	double_quote(char **cmd_ptr, int *control, \
+int *a, char **joined_tmp)
 {
 	char	*tmp;
 
@@ -171,7 +173,8 @@ static void	double_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp
 }
 
 //Handles the remaining quotes(last one)
-static void	process_remaining_quotes(char **cmd_ptr, char **joined_tmp, int *vault)
+static void	process_remaining_quotes(char **cmd_ptr, \
+char **joined_tmp, int *vault)
 {
 	char	*tmp;
 

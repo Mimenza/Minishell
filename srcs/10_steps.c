@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 18:50:14 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:43:45 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_options *a_opt)
 }
 
 //Null opt of the parsed table
-static void	null_opt(t_step **c_step, t_token **c_token, int *end, t_options *d_opt)
+static void	null_opt(t_step **c_step, t_token **c_token, int *end, \
+t_options *d_opt)
 {
 	apply_action(d_opt, c_step, *c_token, end);
 	if (last_node_stack((*c_step)->tree_stack)->type >= 100)

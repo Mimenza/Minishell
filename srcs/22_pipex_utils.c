@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/30 19:06:45 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:44:55 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,14 @@ int	ft_here_doc(char *end, int fd)
 }
 
 //Free the here doc utils
-static void	free_here_doc(char *delimiter, char *output, char *line, int *outfile)
+static void	free_here_doc(char *limiter, char *output, char *line, int *outfile)
 {
 	*outfile = open(".tempfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (*outfile < 0)
 		return ;
 	if (write(*outfile, output, ft_strlen(output)) == -1)
 		return ;
-	free(delimiter);
+	free(limiter);
 	free(output);
 	free(line);
 	line = NULL;
