@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 13:38:17 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 15:48:09 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 	config_parsed_table(&(*s_input)->parsed_table);
 	expand_var_ent(&(*s_input)->parsed_table, s_input);
 	remove_quotes(&(*s_input)->parsed_table);
-	print_cmd_contents(&(*s_input)->parsed_table);
+	// print_cmd_contents(&(*s_input)->parsed_table);
 	if (cmd_handle(&(*s_input)->parsed_table, s_input, step) == TRUE)
 		pipex(s_input, step);
 	read_tree(c_step->tree_stack, &(*s_input)->parsed_table, 2);
