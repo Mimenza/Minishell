@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   18_process.c                                       :+:      :+:    :+:   */
+/*   23_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 07:34:39 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 12:43:03 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:08:41 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 //executes the command and redirects the fds
-void	ft_son_utils(int (*fd)[2], int (*control_fd)[2], \
+static void	ft_son_utils(int (*fd)[2], int (*control_fd)[2], \
 t_var_parsed_table *arg)
 {
 	(*fd)[READ] = 0;
@@ -41,7 +41,7 @@ t_var_parsed_table *arg)
 		exit(1);
 }
 
-void	ft_son_process(t_var_parsed_table *arg, \
+static void	ft_son_process(t_var_parsed_table *arg, \
 t_input **struct_input, t_step *step)
 {
 	int	fd[2];
@@ -65,7 +65,7 @@ t_input **struct_input, t_step *step)
 }
 
 //this function closes the used fds and assigns the pipe fd
-t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
+static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
 {
 	if ((cmd->fd_in != 0 && cmd->fd_in != -1))
 		if (close(cmd->fd_in) < 0)
@@ -83,7 +83,7 @@ t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
 	return (cmd);
 }
 
-t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_list, int fd[2], \
+static t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_list, int fd[2], \
 t_input **struct_input, t_step *step)
 {
 	if (cmd_list->pid == 0 && !cmd_list->next)

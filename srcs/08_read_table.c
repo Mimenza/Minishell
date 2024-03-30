@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   06_read_table.c                                    :+:      :+:    :+:   */
+/*   08_read_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:33:58 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 11:57:08 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:46:01 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	add_option_to_state(t_states *state, t_options *option)
 	}
 }
 
-void	read_table_utils(int (*array)[7], t_states *(*states)[3], \
+static void	read_table_utils(int (*array)[7], t_states *(*states)[3], \
 char ***tokens, char **line)
 {
 	*tokens = ft_split(*line, '\t');

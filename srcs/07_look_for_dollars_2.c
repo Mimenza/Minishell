@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   05_look_for_dollars_2.c                            :+:      :+:    :+:   */
+/*   07_look_for_dollars_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 12:01:27 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:44:34 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 //Trims the token looking for the var name
-int	ft_trim_var_dollar(char *token, t_var_list **v_list, \
+static int	ft_trim_var_dollar(char *token, t_var_list **v_list, \
 char **content, int index)
 {
 	char	*match_var_name;
@@ -34,7 +34,7 @@ char **content, int index)
 	return (FALSE);
 }
 
-void	ft_trim_var_dollar_aux(char *token, char *(*src)[3], \
+static void	ft_trim_var_dollar_aux(char *token, char *(*src)[3], \
 char **var_name, int index)
 {
 	int		size;
@@ -80,7 +80,7 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 	return (FALSE);
 }
 
-void	ft_look_4_d_aux(char **content, int i, int max, t_var_list **v_list)
+static void	ft_look_4_d_aux(char **content, int i, int max, t_var_list **v_list)
 {
 	int	quotes_flag;
 	int	quotes_flag2;

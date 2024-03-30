@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   07_analyzer.c                                      :+:      :+:    :+:   */
+/*   09_analyzer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 20:04:19 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 17:42:20 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:48:18 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_token_list(t_token *tokens)
 }
 
 //This function assign type depending on the data
-t_token	*assign_token_types(char *raw)
+static t_token	*assign_token_types(char *raw)
 {
 	t_token	*new_token;
 
@@ -116,7 +116,7 @@ void	create_tokens_analyzer(t_input **struct_input)
 	start_anaylizer(struct_input, tokens);
 }
 
-void	add_last_token(t_token *last_token, t_token **tokens)
+static void	add_last_token(t_token *last_token, t_token **tokens)
 {
 	t_token	*end_token;
 

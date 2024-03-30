@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   08_steps.c                                         :+:      :+:    :+:   */
+/*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 16:25:16 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:50:14 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 //Processes the parsed table to the pipex
-void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
+static void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 {
 	walk_tree(&(*s_input)->parsed_table, c_step->tree_stack);
 	config_parsed_table(&(*s_input)->parsed_table);
@@ -25,7 +25,7 @@ void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 }
 
 //Avail opt of the parsed table
-void	avail_opt(t_input **s_input, t_step **c_step, t_token **c_token, \
+static void	avail_opt(t_input **s_input, t_step **c_step, t_token **c_token, \
 t_options *a_opt)
 {
 	add_step(*s_input, a_opt, c_step);
@@ -35,7 +35,7 @@ t_options *a_opt)
 }
 
 //Null opt of the parsed table
-void	null_opt(t_step **c_step, t_token **c_token, int *end, t_options *d_opt)
+static void	null_opt(t_step **c_step, t_token **c_token, int *end, t_options *d_opt)
 {
 	apply_action(d_opt, c_step, *c_token, end);
 	if (last_node_stack((*c_step)->tree_stack)->type >= 100)
@@ -47,7 +47,7 @@ void	null_opt(t_step **c_step, t_token **c_token, int *end, t_options *d_opt)
 }
 
 //Aux function of the analizer
-int	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
+static int	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
 {
 	t_token		*c_token;
 	int			end_flag;

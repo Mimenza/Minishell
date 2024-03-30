@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   11_built_in_utils.c                                :+:      :+:    :+:   */
+/*   17_built_in_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:09:49 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 16:17:13 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:59:43 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	ft_empty_export_utils(t_var_list *current, \
+static void	ft_empty_export_utils(t_var_list *current, \
 t_var_list **env, t_var_list	*name, int *size)
 {
 	current = *env;
@@ -34,7 +34,7 @@ t_var_list **env, t_var_list	*name, int *size)
 	(*size)--;
 }
 
-void	ft_empty_export(t_var_list **env)
+static void	ft_empty_export(t_var_list **env)
 {
 	t_var_list	*save;
 	t_var_list	*current;

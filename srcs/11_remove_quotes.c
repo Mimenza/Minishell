@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   09_remove_quotes.c                                 :+:      :+:    :+:   */
+/*   11_remove_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 12:14:25 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:26:40 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	remove_quotes(t_var_parsed_table **head)
 }
 
 //Handles the simple quotes
-void	single_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
+static void	single_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
 {
 	char	*tmp;
 
@@ -142,7 +142,7 @@ void	single_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
 }
 
 //Handles the double quotes
-void	double_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
+static void	double_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
 {
 	char	*tmp;
 
@@ -171,7 +171,7 @@ void	double_quote(char **cmd_ptr, int *control, int *a, char **joined_tmp)
 }
 
 //Handles the remaining quotes(last one)
-void	process_remaining_quotes(char **cmd_ptr, char **joined_tmp, int *vault)
+static void	process_remaining_quotes(char **cmd_ptr, char **joined_tmp, int *vault)
 {
 	char	*tmp;
 

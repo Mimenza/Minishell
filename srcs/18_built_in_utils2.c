@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   11_built_in_utils2.c                               :+:      :+:    :+:   */
+/*   18_built_in_utils2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:18:21 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 16:59:00 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:25:30 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	add_var_utils(char *name, char *content, \
+static void	add_var_utils(char *name, char *content, \
 t_var_list	*current, t_var_list *new)
 {
 	while (current->next)
@@ -53,7 +53,7 @@ void	add_var(char *name, t_var_list **env, char *content)
 }
 
 //Main built in function
-int	ft_built_in2(t_var_parsed_table	*cmd_list, \
+static int	ft_built_in2(t_var_parsed_table	*cmd_list, \
 t_input **struct_input, int (*control)[2], t_step *step)
 {
 	if (ft_strcmp(cmd_list->cmd_splited[0], "export") == 0)

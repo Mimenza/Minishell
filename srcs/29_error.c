@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   19_error.c                                         :+:      :+:    :+:   */
+/*   29_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:04:36 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 16:45:45 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:23:46 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_error(int id, char *args, t_input **input)
 		print_error_aux(id, args, input);
 }
 
-void	print_error_aux(int id, char *args, t_input **input)
+static void	print_error_aux(int id, char *args, t_input **input)
 {
 	if (id == 10)
 	{

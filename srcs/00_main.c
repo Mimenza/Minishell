@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:43:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 13:47:39 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:31:03 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	g_main_loop;
 
 //Analize the input looking for errors
-int	analyze_input(char **input, t_input **struct_input)
+static int	analyze_input(char **input, t_input **struct_input)
 {
 	size_t	control;
 
@@ -37,7 +37,7 @@ int	analyze_input(char **input, t_input **struct_input)
 }
 
 //Prepares the variables and structures for the program
-void	prepare_program(t_input **struct_input, char **envp)
+static void	prepare_program(t_input **struct_input, char **envp)
 {
 	*struct_input = (t_input *)malloc(sizeof(t_input));
 	load_history();
@@ -48,7 +48,7 @@ void	prepare_program(t_input **struct_input, char **envp)
 }
 
 //Checks the input 
-int	check_input(char **line, t_input **struct_input)
+static int	check_input(char **line, t_input **struct_input)
 {
 	(*struct_input)->input = *line;
 	if (ft_strlen(*line) == 0)

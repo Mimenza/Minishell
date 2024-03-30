@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   10_actions.c                                       :+:      :+:    :+:   */
+/*   14_actions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:12:20 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 14:27:17 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:56:23 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	ft_reduce_utils(t_token *(*all)[7], \
+static void	ft_reduce_utils(t_token *(*all)[7], \
 t_step **c_step, t_options *options, int mode)
 {
 	(*all)[START_STACK] = (*c_step)->tree_stack;
@@ -32,7 +32,7 @@ t_step **c_step, t_options *options, int mode)
 		(*all)[TOKEN_4] = (*all)[START_STACK];
 }
 
-void	ft_reduce_utils1(t_token *(*all)[7], t_step **c_step)
+static void	ft_reduce_utils1(t_token *(*all)[7], t_step **c_step)
 {
 	while ((*all)[TOKEN_2]->next != (*all)[TOKEN_1])
 		(*all)[TOKEN_2] = (*all)[TOKEN_2]->next;
@@ -57,7 +57,7 @@ void	ft_reduce_utils1(t_token *(*all)[7], t_step **c_step)
 		(*all)[TOKEN_4]->next = (*all)[JOIN_TOKEN];
 }
 
-void	ft_reduce_utils2(t_token *(*all)[7], t_step **c_step)
+static void	ft_reduce_utils2(t_token *(*all)[7], t_step **c_step)
 {
 	while ((*all)[TOKEN_2]->next != (*all)[TOKEN_1])
 		(*all)[TOKEN_2] = (*all)[TOKEN_2]->next;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   13_pipex_utils.c                                   :+:      :+:    :+:   */
+/*   22_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/28 11:13:38 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:06:45 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	ft_here_doc(char *end, int fd)
 }
 
 //Free the here doc utils
-void	free_here_doc(char *delimiter, char *output, char *line, int *outfile)
+static void	free_here_doc(char *delimiter, char *output, char *line, int *outfile)
 {
 	*outfile = open(".tempfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (*outfile < 0)

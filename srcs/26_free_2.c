@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_2.c                                           :+:      :+:    :+:   */
+/*   26_free_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:00 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/29 14:50:16 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:21:29 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	free_states(t_states *states)
+static void	free_states(t_states *states)
 {
 	t_states	*current_state;
 
@@ -41,7 +41,7 @@ void	free_double(char **double_ptr)
 	free(temp);
 }
 
-void	free_tokens(t_token *token)
+static void	free_tokens(t_token *token)
 {
 	t_token	*tmp_token;
 

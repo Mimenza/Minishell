@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   12_read_tree.c                                     :+:      :+:    :+:   */
+/*   19_read_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:46:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 16:24:38 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:02:36 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	walk_tree(t_var_parsed_table **parsed_table, t_token *tree)
 	read_tree(tree, parsed_table, 1);
 }
 
-void	read_tree_utils(int (*array)[7], t_token *tree)
+static void	read_tree_utils(int (*array)[7], t_token *tree)
 {
 	if (tree->left && tree->left->type == 1)
 		(*array)[FD] = open(tree->right->data, \

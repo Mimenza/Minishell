@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   16_free.c                                          :+:      :+:    :+:   */
+/*   25_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:17:49 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 15:06:40 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:20:04 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 // Función para liberar un árbol de tokens recursivamente
-void	free_tree(t_token *root)
+static void	free_tree(t_token *root)
 {
 	if (root == NULL || (root->type < -2 || root->type > 110))
 		return ;
