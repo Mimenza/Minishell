@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:59:12 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 13:43:51 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:51:12 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,38 @@ void	ft_print_var(t_input *input)
 
 	variable_list = input->ent_var;
 	if (variable_list == NULL)
-		printf("no tienes variables de entorno creadas\n");
+		printf("Env is empty\n");
 	while (variable_list)
 	{
-		printf("\n--------------\n");
-		printf("name: %s\n", variable_list->name);
-		printf("content: %s\n", variable_list->content);
-		printf("is env: %i\n", variable_list->is_env);
-		printf("--------------\n");
+		if (variable_list->is_env == 1)
+			printf("%s=%s\n", variable_list->name, variable_list->content);
 		variable_list = variable_list->next;
 	}
 }
 
-//creates a new node and add it to the list
+// //creates a new node and add it to the list
 static void	ft_add_var(t_var_list **list, char *name, char *content, int id)
 {
 	t_var_list	*new;
+	t_var_list	*current;
 
 	new = malloc(sizeof(t_var_list));
 	if (new == NULL)
 		return ;
 	new->content = content;
 	new->name = name;
-	new->next = *list;
+	new->next = NULL;
 	new->is_printed = 0;
 	new->is_env = id;
-	*list = new;
+	if (*list == NULL)
+		*list = new;
+	else
+	{
+		current = *list;
+		while (current->next != NULL)
+			current = current->next;
+		current->next = new;
+	}
 }
 
 //looks for a node with the same name and overwrites its content
