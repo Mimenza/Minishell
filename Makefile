@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+         #
+#    By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 11:36:49 by emimenza          #+#    #+#              #
-#    Updated: 2024/03/29 15:23:12 by anurtiag         ###   ########.fr        #
+#    Updated: 2024/03/30 18:16:43 by emimenza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ RLFLAGS		=	-I /Users/$(USER)/.brew/opt/readline/include
 NAME		=	minishell
 
 #Ficheros
-SRC_FILES	=	00_main 00_main_utils 01_history 02_signal 03_variables 04_look_for_equals 05_look_for_dollars_1 05_look_for_dollars_2 06_read_table 07_analyzer 08_steps 09_remove_quotes 09_steps_utils_1 09_steps_utils_2 10_actions 10_actions_utils 11_built_in 11_built_in_utils 11_built_in_utils2 12_read_tree 12_read_tree_utils 13_pipex_utils 14_bash_split 15_tokenization 16_free 16_free_2 17_pipex 18_process 19_error 20_print 21_cmd_handle
+SRC_FILES	=	00_main 01_main_utils 02_history 03_signal 04_variables 05_look_for_equals 06_look_for_dollars_1 07_look_for_dollars_2 08_read_table 09_analyzer 10_steps\
+				11_remove_quotes 12_steps_utils_1 13_steps_utils_2 14_actions 15_actions_utils 16_built_in 17_built_in_utils 18_built_in_utils2 19_read_tree 20_read_tree_utils\
+				21_pipex 22_pipex_utils 23_process 24_bash_split 25_free 26_free_2 27_tokenization 28_cmd_handle 29_error 30_print
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 LIBFT		=	libs/Libft
