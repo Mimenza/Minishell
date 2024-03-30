@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 12:47:47 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 10:04:43 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 void	avail_opt(t_input **s_input, t_step **c_step, t_token **c_token, \
 t_options *a_opt)
 {
-	add_step(*s_input, a_opt, (*c_step)->tree_stack, (*c_step)->input, c_step);
+	add_step(*s_input, a_opt, c_step);
 	if ((*c_step)->input && ((*c_token)->type >= 100 || \
 	((*c_token)->type >= 1 && (*c_token)->type <= 5)))
 		*c_token = (*c_step)->input;

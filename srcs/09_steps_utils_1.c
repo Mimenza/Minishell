@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_steps_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:29:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/27 11:18:40 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/30 10:27:16 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,26 @@ t_options	*find_option(t_states *state, int token_type)
 }
 
 //Creates a new step node
-void	add_step(t_input *s_input, t_options *option, t_token *tree_stack, t_token *input_token, t_step **c_step)
+void	add_step(t_input *s_input, t_options *option, t_step **c_step)
 {
 	t_step		*step;
 	t_states	*state;
+	t_token		*tree__stack;
 
 	step = NULL;
+	tree__stack = (*c_step)->tree_stack;
 	step = (t_step *)malloc(sizeof(t_step));
 	if (step == NULL)
 		return ;
 	step->step_nbr = (*c_step)->step_nbr + 1;
 	step->state_nbr = option->next_state;
-	if (find_state(s_input->parsing_table, option->next_state, &state) == FALSE)
-	{
-		free(state);
-		free(step);
-		return ;
-	}
+	if (find_state(s_input->parsing_table, \
+	option->next_state, &state) == FALSE)
+		return (free(state), free(step));
 	step->state = state;
 	step->option_nbr = 0;
-	step->tree_stack = tree_stack;
-	step->input = input_token;
+	step->tree_stack = tree__stack;
+	step->input = (*c_step)->input;
 	step->next = NULL;
 	step->prev = *c_step;
 	(*c_step)->next = step;
@@ -103,3 +102,33 @@ t_token	*last_node_stack(t_token *stack)
 		current = current->next;
 	return (current);
 }
+
+////////////LA ORIGINAL
+// void	add_step(t_input *s_input, t_options *option, \ 
+// *tree_stack, t_token *input_token, t_step **c_step)
+// {
+// 	t_step		*step;
+// 	t_states	*state;
+
+// 	step = NULL;
+// 	step = (t_step *)malloc(sizeof(t_step));
+// 	if (step == NULL)
+// 		return ;
+// 	step->step_nbr = (*c_step)->step_nbr + 1;
+// 	step->state_nbr = option->next_state;
+// 	if (find_state(s_input->parsing_table, \
+//option->next_state, &state) == FALSE)
+// 	{
+// 		free(state);
+// 		free(step);
+// 		return ;
+// 	}
+// 	step->state = state;
+// 	step->option_nbr = 0;
+// 	step->tree_stack = tree_stack;
+// 	step->input = input_token;
+// 	step->next = NULL;
+// 	step->prev = *c_step;
+// 	(*c_step)->next = step;
+// 	*c_step = step;
+// }
