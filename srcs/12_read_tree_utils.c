@@ -6,19 +6,19 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:06:52 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 13:11:11 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:05:07 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node)
+int	reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node)
 {
 	if (mode == 2)
 	{
 		(*array)[FIRST] = 1;
 		free_parsed_table(table_node);
-		return ;
+		return (FALSE);
 	}
 	if (mode == 1)
 	{
@@ -26,8 +26,9 @@ void	reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node)
 		(*array)[RFF] = 0;
 		(*array)[EF] = 0;
 		(*array)[FD] = -1;
-		return ;
+		return (FALSE);
 	}
+	return (TRUE);
 }
 
 void	init_append_tree(t_token *tree, int *first_time, \

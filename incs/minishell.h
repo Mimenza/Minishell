@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 13:36:30 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:05:19 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ t_var_parsed_table	*init_parsed_table(t_var_parsed_table *prev_table);
 void		free_parsed_table(t_var_parsed_table **table);;
 
 //READ TREE UTILS
-void		reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node);
+int		reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node);
 // int		(*reset_statics(int mode, int (*array)[7], t_var_parsed_table **table_node))[7];
 void		init_append_tree(t_token *tree, int *first_time, t_var_parsed_table **table_node);
 void		set_fds(int (*array)[7], t_var_parsed_table **table_node);
