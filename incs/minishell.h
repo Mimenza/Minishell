@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:41:06 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/31 10:37:19 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,7 @@ void						ret_to_prev(t_step **c_step);
 void						config_parsed_table(t_var_parsed_table **current);
 t_step						*init_first_step(t_input **struct_input, \
 t_token *input_token);
+int							special_case(char *s);
 
 //ACTIONS
 static void					ft_reduce_utils(t_token *(*all)[7], \

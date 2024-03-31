@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:43:45 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/03/31 10:38:06 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,62 @@ int	start_anaylizer(t_input **s_input, t_token *input_token)
 	if (step == NULL)
 		return (print_error(6, NULL, NULL), FALSE);
 	analyzer_aux(s_input, step, c_step);
-	if (c_step->tree_stack && (stack_size(c_step->tree_stack) == 2) && \
-	(last_node_stack(c_step->tree_stack)->type == -2))
-		return (process_p_table(s_input, c_step, step), free_steps(step), TRUE);
+	if ((c_step->tree_stack && (stack_size(c_step->tree_stack) == 2) && \
+	(last_node_stack(c_step->tree_stack)->type == -2)))
+		return (process_p_table(s_input, c_step, step), \
+		free_steps(step), TRUE);
+	else if (special_case((*s_input)->input))
+		return (free_steps(c_step), FALSE);
 	else
 		return (free_steps(c_step), print_error(7, NULL, s_input), FALSE);
 	return (FALSE);
 }
+
+////////LA ORIGINAL
+// int	start_anaylizer(t_input **s_input, t_token *input_token)
+// {
+// 	t_step		*step;
+// 	t_step		*c_step;
+
+// 	c_step = init_first_step(s_input, input_token);
+// 	step = c_step;
+// 	if (step == NULL)
+// 		return (print_error(6, NULL, NULL), FALSE);
+// 	analyzer_aux(s_input, step, c_step);
+// 	if (c_step->tree_stack && (stack_size(c_step->tree_stack) == 2) && \
+// 	(last_node_stack(c_step->tree_stack)->type == -2))
+// 		return (process_p_table(s_input, c_step, step), free_steps(step), TRUE);
+// 	else
+// 		return (free_steps(c_step), print_error(7, NULL, s_input), FALSE);
+// 	return (FALSE);
+// }
+
+//Aux function of the analizer
+// static int	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
+// {
+// 	t_token		*c_token;
+// 	int			end_flag;
+// 	t_options	*d_opt;
+// 	t_options	*a_opt;
+
+// 	end_flag = FALSE;
+// 	c_token = step->input;
+// 	while (end_flag == FALSE)
+// 	{
+// 		d_opt = find_option(c_step->state, -1);
+// 		a_opt = find_option(c_step->state, c_token->type);
+// 		if ((d_opt && (d_opt->next_state == c_token->type)) || ((a_opt == NULL)\
+// 		&& \
+// 		(d_opt == NULL) && (c_token->type >= 100) && (c_step->state_nbr != 0)))
+// 			ret_to_prev(&c_step);
+// 		else if (a_opt != NULL)
+// 		{
+// 			apply_action(a_opt, &c_step, c_token, &end_flag);
+// 			avail_opt(s_input, &c_step, &c_token, a_opt);
+// 		}
+// 		else if (a_opt == NULL && d_opt != NULL)
+// 			null_opt(&c_step, &c_token, &end_flag, d_opt);
+// 		else if (a_opt == NULL && d_opt == NULL)
+// 			break ;
+// 	}
+// }

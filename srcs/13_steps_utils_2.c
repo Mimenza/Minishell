@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   09_steps_utils_2.c                                 :+:      :+:    :+:   */
+/*   13_steps_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:58:27 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/29 11:56:13 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/31 10:38:35 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ t_step	*init_first_step(t_input **struct_input, t_token *input_token)
 	first_step->prev = NULL;
 	return (first_step);
 }
+
+int	special_case(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i] != '\0')
+	{
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
+			return (FALSE);
+	}
+	return (TRUE);
+}
+
 //LA ORIGINAL
 // void	config_parsed_table(t_var_parsed_table **current)
 // {
