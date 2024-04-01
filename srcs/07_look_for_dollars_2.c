@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 18:44:34 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:48:49 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char **var_name, int index)
 	size2 = 0;
 	size1 = -1;
 	size = 0;
-	while (token[size] && (size != index || (token[size] != '$' || \
-	!isalpha(token[size + 1]))))
+	while (token[size] && ((size != index) || ((token[size] != '$') && \
+	(!(isalpha(token[size + 1])) || (token[size + 1] == '?')))))
 		size++;
 	(*src)[BEFORE] = malloc(sizeof(char) * (size + 1));
 	while (++size1 < size)
@@ -71,7 +71,7 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 	i = 0;
 	while (i < max)
 	{
-		ft_look_4_d_aux(content, i, max, v_list);
+		ft_look_4_d_aux(content, &i, max, v_list);
 		max = ft_strlen(*content);
 		i++;
 	}
@@ -80,31 +80,31 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 	return (FALSE);
 }
 
-static void	ft_look_4_d_aux(char **content, int i, int max, t_var_list **v_list)
+static void	ft_look_4_d_aux(char **content, int *i, int max, \
+t_var_list **v_list)
 {
 	int	quotes_flag;
 	int	quotes_flag2;
 
 	quotes_flag2 = 0;
 	quotes_flag = 0;
-	if ((*content)[i] == '\'')
+	if ((*content)[*i] == '\'')
 		quotes_flag = !quotes_flag;
-	if ((*content)[i] == '\"')
+	if ((*content)[*i] == '\"')
 		quotes_flag2 = !quotes_flag2;
-	if (!quotes_flag2 && !quotes_flag && (*content)[i] == '$' && \
-	((*content)[i + 1] == '\'' || (*content)[i + 1] == '\"'))
+	if (!quotes_flag2 && !quotes_flag && (*content)[*i] == '$' && \
+	((*content)[*i + 1] == '\'' || (*content)[*i + 1] == '\"'))
 	{
-		del_char(content, i);
-		i = -1;
+		del_char(content, *i);
+		*i = -1;
 	}
-	else if ((quotes_flag == 0) && (((*content)[i] == '$') && \
-	((((*content)[i + 1] >= 'a') && ((*content)[i + 1] <= 'z')) || \
-	(((*content)[i + 1] >= 'A') && ((*content)[i + 1] <= 'Z')) || \
-	((*content)[i + 1] >= '_' || ((*content)[i + 1] >= '?')))))
+	else if ((quotes_flag == 0) && (((*content)[*i] == '$') && \
+	((((*content)[*i + 1] >= 'a') && ((*content)[*i + 1] <= 'z')) || \
+	(((*content)[*i + 1] >= 'A') && ((*content)[*i + 1] <= 'Z')) || \
+	((*content)[*i + 1] >= '_' || ((*content)[*i + 1] >= '?')))))
 	{
-		ft_trim_var_dollar(*content, v_list, content, i);
-		i = -1;
-		max = ft_strlen(*content);
+		ft_trim_var_dollar(*content, v_list, content, *i);
+		*i = -1;
 	}
 }
 
