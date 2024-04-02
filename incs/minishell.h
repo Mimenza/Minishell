@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 10:50:48 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:32:08 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ static void					ft_trim_var_dollar_aux(char *tkn, char *(*src)[3], \
 int							ft_look_4_dollar(char const *tkn, \
 							t_var_list **v_list, char **content);
 static void					ft_look_4_d_aux(char **content, int *i, int max, \
-							t_var_list **v_list);
+							t_var_list **v_list, int *quotes);
 
 //READ TABLE
 static t_options			*create_option_node(int array[7]);
