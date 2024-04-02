@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   09_steps_utils_1.c                                 :+:      :+:    :+:   */
+/*   12_steps_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:29:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 10:27:16 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:51:34 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_token	*last_node_stack(t_token *stack)
 // 		return ;
 // 	step->step_nbr = (*c_step)->step_nbr + 1;
 // 	step->state_nbr = option->next_state;
-// 	if (find_state(s_input->parsing_table, \
+// 	if (find_state(s_input->parsing_table, \ 
 //option->next_state, &state) == FALSE)
 // 	{
 // 		free(state);

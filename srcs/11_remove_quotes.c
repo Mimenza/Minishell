@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11_remove_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 09:49:17 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:49:24 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ char **joined_tmp, int *vault)
 	{
 		tmp = ft_substr(*cmd_ptr, vault[END] + 1, vault[SIZE] - vault[END]);
 		*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
-		free_double(*cmd_ptr);//FALTABA EL FREE, SI EXPLOTA PUEDE SER POR ESTO 
+		free_double(cmd_ptr);//FALTABA EL FREE, SI EXPLOTA PUEDE SER POR ESTO 
 		*cmd_ptr = *joined_tmp;
 	}
 	else
