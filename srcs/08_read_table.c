@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:33:58 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 18:46:01 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:48:49 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // 		t_options *current_option = current_state->options;
 // 		while (current_option != NULL)
 // 		{
-// 			printf("Index: %d, State: %d, Type: %d, Action:\ 
+// 			printf("Index: %d, State: %d, Type: %d, Action: \
 //%d, Next State: %d, Red: %d\n",
 // 				current_option->index, current_option->state,\
 // current_option->t_type,

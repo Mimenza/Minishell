@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 08:34:37 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:01:08 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_options *d_opt)
 }
 
 //Aux function of the analizer
-static int	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
+static void	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
 {
 	t_token		*c_token;
 	int			end_flag;
