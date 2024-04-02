@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   11_built_in.c                                      :+:      :+:    :+:   */
+/*   16_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/27 16:30:47 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:29:45 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	get_path(char *args, t_input **env)
 		if (access(args, X_OK) != 0)
 			return (print_error(8, NULL, NULL), 1);
 		chdir(args);
-		ft_pwd(env);
+		// ft_pwd(env);
 		current->content = ft_strdup(args);
 		return (0);
 	}
