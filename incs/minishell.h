@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 10:50:48 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:46:52 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -370,9 +370,9 @@ int							ft_verify_cmd(char **paths, t_var_parsed_table *\
 int							ft_close_pipes(int fd[2]);
 int							relative_path(t_var_parsed_table *cmd, \
 							t_input **env);
-int							ft_here_doc(char *end, int fd);
-static void					free_here_doc(char *delimiter, char *output, \
-							char *line, int *outfile);
+int							ft_here_doc(char **end, int fd);
+static void					free_here_doc(char **delimiter, char **output, \
+							char **line, int *outfile);
 
 //PROCESS
 static void					ft_son_utils(int (*fd)[2], int (*control_fd)[2], \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   22_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/30 19:44:55 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:47:24 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	relative_path(t_var_parsed_table *cmd, t_input **env)
 }
 
 //Custom here doc function
-int	ft_here_doc(char *end, int fd)
+int	ft_here_doc(char **end, int fd)
 {
 	char	*delimiter;
 	char	*line;
@@ -91,10 +91,9 @@ int	ft_here_doc(char *end, int fd)
 
 	if (end == NULL)
 		return (print_error(11, NULL, NULL), 1);
-	remove_quotes_aux(&end);
-	output = (char *)malloc(sizeof(char) * 1);
-	output[0] = '\0';
-	delimiter = ft_strjoin(end, "\n", 1);
+	remove_quotes_aux(end);
+	output = ft_strdup("");
+	delimiter = ft_strjoin(*end, "\n", 1);
 	while (1)
 	{
 		write(1, "Minishell heredoc> ", 19);
@@ -103,22 +102,24 @@ int	ft_here_doc(char *end, int fd)
 			break ;
 		output = ft_strjoin(output, line, 15);
 	}
-	free_here_doc(delimiter, output, line, &outfile);
+	free_here_doc(&delimiter, &output, &line, &outfile);
 	return (outfile);
 }
 
 //Free the here doc utils
-static void	free_here_doc(char *limiter, char *output, char *line, int *outfile)
+static void	free_here_doc(char **limiter, char **output, char **line, int *outfile)
 {
 	*outfile = open(".tempfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (*outfile < 0)
 		return ;
-	if (write(*outfile, output, ft_strlen(output)) == -1)
+	if (write(*outfile, *output, ft_strlen(*output)) == -1)
 		return ;
-	free(limiter);
-	free(output);
-	free(line);
-	line = NULL;
+	free(*limiter);
+	*limiter = NULL;
+	free(*output);
+	*output = NULL;
+	free(*line);
+	*line = NULL;
 	if (close(*outfile) < 0)
 		return ;
 	*outfile = open(".tempfile.txt", O_RDONLY);

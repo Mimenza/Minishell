@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 11:01:08 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:59:38 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 	walk_tree(&(*s_input)->parsed_table, c_step->tree_stack);
 	config_parsed_table(&(*s_input)->parsed_table);
 	expand_var_ent(&(*s_input)->parsed_table, s_input);
+	print_cmd_contents(&(*s_input)->parsed_table);
 	remove_quotes(&(*s_input)->parsed_table);
+	print_cmd_contents(&(*s_input)->parsed_table);
 	if (cmd_handle(&(*s_input)->parsed_table, s_input, step) == TRUE)
 		pipex(s_input, step);
 	read_tree(c_step->tree_stack, &(*s_input)->parsed_table, 2);

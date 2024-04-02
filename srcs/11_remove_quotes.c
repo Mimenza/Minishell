@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11_remove_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 11:07:39 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:53:48 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ void	remove_quotes(t_var_parsed_table **head)
 {
 	t_var_parsed_table	*first;
 	int					i;
-
+	char				*prueba;
 	first = *head;
+	printf("->%s<-\n", (*head)->cmd_splited[1]);
 	while ((*head) != NULL)
 	{
 		i = 0;
@@ -103,7 +104,11 @@ void	remove_quotes(t_var_parsed_table **head)
 		{
 			while ((*head)->cmd_splited[i] != NULL)
 			{
-				remove_quotes_aux(&((*head)->cmd_splited[i]));
+				prueba = (*head)->cmd_splited[i];
+				// printf("->%s<- i vale %d\n", (*head)->cmd_splited[i], i);
+				printf("antes de entrar a remove\n");
+				remove_quotes_aux(&prueba);
+				printf("despues de entrar a remove\n");
 				i++;
 			}
 		}
@@ -199,7 +204,7 @@ void	remove_quotes_aux(char **cmd_ptr)
 	char	*joined_tmp;
 
 	tmp = NULL;
-	joined_tmp = ft_strdup("");
+	joined_tmp = ft_strdup("$");
 	vault[QUOTES] = 0;
 	vault[SIZE] = ft_strlen(*cmd_ptr) - 1;
 	vault[START] = 0;
@@ -214,4 +219,5 @@ void	remove_quotes_aux(char **cmd_ptr)
 		vault[CUR]++;
 	}
 	process_remaining_quotes(cmd_ptr, &joined_tmp, vault);
+	// printf("saimos de remove quotes\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   19_read_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:46:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:02:36 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:45:42 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void	read_tree_utils(int (*array)[7], t_token *tree)
 	else if (tree->left && tree->left->type == 2)
 		(*array)[FD] = open(tree->right->data, O_RDONLY);
 	else if (tree->left && tree->left->type == 3)
-		(*array)[FD] = ft_here_doc(tree->right->data, 0);
+		(*array)[FD] = ft_here_doc(&tree->right->data, 0);
 	else if (tree->left && tree->left->type == 4)
 		(*array)[FD] = open(tree->right->data, \
 		O_WRONLY | O_CREAT | O_APPEND, 0644);
