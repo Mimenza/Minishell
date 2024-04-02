@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   11_remove_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:45:36 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 09:49:17 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
-
+//HE CAMBIADO LA MAYORIA DE JOINS PA QUE LIBEREN JOINED TOKEN Y TMP
 // void	remove_quotes_aux(char **cmd_ptr)
 // {
 // 	int		control[2];
@@ -129,7 +129,7 @@ int *a, char **joined_tmp)
 				tmp = ft_substr(*cmd_ptr, a[END] + 1, a[START] - a[END] - 1);
 			else
 				tmp = ft_substr(*cmd_ptr, a[END], a[START] - a[END]);
-			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 1);
+			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
 		}
 		else
 		{
@@ -137,7 +137,7 @@ int *a, char **joined_tmp)
 			a[END] = a[CUR];
 			control[SIMPLE] = FALSE;
 			tmp = ft_substr(*cmd_ptr, a[START] + 1, a[END] - a[START] - 1);
-			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 5);
+			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
 		}
 	}
 }
@@ -159,7 +159,7 @@ int *a, char **joined_tmp)
 				tmp = ft_substr(*cmd_ptr, a[END] + 1, a[START] - a[END] - 1);
 			else
 				tmp = ft_substr(*cmd_ptr, a[END], a[START] - a[END]);
-			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 1);
+			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
 		}
 		else
 		{
@@ -167,7 +167,7 @@ int *a, char **joined_tmp)
 			a[END] = a[CUR];
 			control[DOUBLE] = FALSE;
 			tmp = ft_substr(*cmd_ptr, a[START] + 1, a[END] - a[START] - 1);
-			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 5);
+			*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
 		}
 	}
 }
@@ -182,7 +182,8 @@ char **joined_tmp, int *vault)
 	if (vault[QUOTES] == 1)
 	{
 		tmp = ft_substr(*cmd_ptr, vault[END] + 1, vault[SIZE] - vault[END]);
-		*joined_tmp = ft_strjoin(*joined_tmp, tmp, 5);
+		*joined_tmp = ft_strjoin(*joined_tmp, tmp, 15);
+		free_double(*cmd_ptr);//FALTABA EL FREE, SI EXPLOTA PUEDE SER POR ESTO 
 		*cmd_ptr = *joined_tmp;
 	}
 	else
