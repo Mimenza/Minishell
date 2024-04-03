@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_look_for_dollars_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 15:31:29 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:19:39 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 		max = ft_strlen(*content);
 		i++;
 	}
-	if (token[0] == '$')
+	if (token[0] == '$' && ft_strlen(token) == 1)
 		free((char *)token);
 	return (FALSE);
 }
