@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   16_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/03 12:26:46 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:40:01 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_echo(char **args, int fd)
 {
 	size_t	i;
 	int		control;
+
 	i = -1;
 	control = FALSE;
 	args++;
@@ -94,7 +95,6 @@ int	get_path(char *args, t_input **env)
 		if (access(args, X_OK) != 0)
 			return (print_error(8, NULL, NULL), 1);
 		chdir(args);
-		// ft_pwd(env);
 		current->content = ft_strdup(args);
 		return (0);
 	}

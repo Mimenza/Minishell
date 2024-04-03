@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_look_for_dollars_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 08:45:34 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:39:11 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,25 +72,23 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 	i = 0;
 	while (i < max)
 	{
-		ft_look_4_d_aux(content, &i, max, v_list, &quotes);
+		ft_look_4_d_aux(content, &i, v_list, &quotes);
 		max = ft_strlen(*content);
 		i++;
 	}
-	// if (token[0] == '$')
-	// 	free((char *)token);
 	return (FALSE);
 }
 
-static void	ft_look_4_d_aux(char **content, int *i, int max, \
+static void	ft_look_4_d_aux(char **content, int *i, \
 t_var_list **v_list, int (*quotes)[2])
 {
-
 	if ((*content)[*i] == '\'')
 		(*quotes)[SIMPLE] = !(*quotes)[SIMPLE];
 	if ((*content)[*i] == '\"')
 		(*quotes)[DOUBLE] = !(*quotes)[DOUBLE];
-	if ((*quotes)[DOUBLE] == 0 && (*quotes)[SIMPLE] == 0 && (*content)[*i] == '$' && \
-	((*content)[*i + 1] == '\'' || (*content)[*i + 1] == '\"'))
+	if ((*quotes)[DOUBLE] == 0 && (*quotes)[SIMPLE] == 0 && \
+	(*content)[*i] == '$' && ((*content)[*i + 1] == '\'' || \
+	(*content)[*i + 1] == '\"'))
 	{
 		del_char(content, *i);
 		*i = -1;

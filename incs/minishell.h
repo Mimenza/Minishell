@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:05:23 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:38:39 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ static void					ft_trim_var_dollar_aux(char *tkn, char *(*src)[3], \
 							char **var_name, int index);
 int							ft_look_4_dollar(char const *tkn, \
 							t_var_list **v_list, char **content);
-static void					ft_look_4_d_aux(char **content, int *i, int max, \
+static void					ft_look_4_d_aux(char **content, int *i, \
 							t_var_list **v_list, int (*quotes)[2]);
 
 //READ TABLE
