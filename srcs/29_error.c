@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:04:36 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 19:23:46 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:18:53 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 void	print_error(int id, char *args, t_input **input)
 {
 	if (id == 1)
+	{
+		ft_var_found(&(*input)->ent_var, "?", "1");
 		printf("ERROR: Invalid input\n");
+	}
 	else if (id == 2)
 		printf("ERROR: syntax error tokenization\n");
 	else if (id == 3)
@@ -34,15 +37,15 @@ void	print_error(int id, char *args, t_input **input)
 	}
 	else if (id == 8)
 		printf("ERROR: no such file or directory: %s\n", args);
-	else if (id == 9)
-		printf("ERROR: failed opening the files\n");
 	else
 		print_error_aux(id, args, input);
 }
 
 static void	print_error_aux(int id, char *args, t_input **input)
 {
-	if (id == 10)
+	if (id == 9)
+		printf("ERROR: failed opening the files\n");
+	else if (id == 10)
 	{
 		ft_var_found(&(*input)->ent_var, "?", "127");
 		printf("ERROR: command %s not found\n", args);
@@ -55,7 +58,10 @@ static void	print_error_aux(int id, char *args, t_input **input)
 		printf("ERROR: filename argument required\n");
 	}
 	else if (id == 13)
+	{
+		ft_var_found(&(*input)->ent_var, "?", "258");
 		printf("ERROR: unexpected end of file\n");
+	}
 	else if (id == 14)
 	{
 		ft_var_found(&(*input)->ent_var, "?", "126");

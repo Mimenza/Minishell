@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:38:39 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:17:46 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define SIMPLE 0
 # define DOUBLE 1
+# define RES 2
 
 # define START 0
 # define END 1
@@ -83,6 +84,7 @@
 # define FALSE 0
 # define TRUE 1
 # define ERROR -1
+
 # define SPACE_M 32
 # define REDUCE -1
 # define WORD 0
@@ -240,7 +242,7 @@ static void					ft_trim_var_dollar_aux(char *tkn, char *(*src)[3], \
 int							ft_look_4_dollar(char const *tkn, \
 							t_var_list **v_list, char **content);
 static void					ft_look_4_d_aux(char **content, int *i, \
-							t_var_list **v_list, int (*quotes)[2]);
+							t_var_list **v_list, int (*quotes)[3]);
 
 //READ TABLE
 static t_options			*create_option_node(int array[7]);
@@ -379,7 +381,8 @@ static void					ft_son_utils(int (*fd)[2], int (*control_fd)[2], \
 							t_var_parsed_table *arg);
 static void					ft_son_process(t_var_parsed_table *arg, \
 							t_input **struct_input, t_step *step);
-static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2], t_input **struct_input);
+static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2], \
+							t_input **struct_input);
 static t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_lst, \
 							int fd[2], t_input **struct_input, t_step *step);
 void						ft_make_process(t_var_parsed_table *cmd_list, \
