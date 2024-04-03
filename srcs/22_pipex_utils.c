@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/02 15:47:24 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 07:55:27 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	ft_here_doc(char **end, int fd)
 
 	if (end == NULL)
 		return (print_error(11, NULL, NULL), 1);
-	remove_quotes_aux(end);
+	remove_quotes_aux(end, 0);
 	output = ft_strdup("");
 	delimiter = ft_strjoin(*end, "\n", 1);
 	while (1)

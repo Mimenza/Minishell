@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/02 10:29:45 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 08:29:06 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_echo(char **args, int fd)
 {
 	size_t	i;
 	int		control;
-
 	i = -1;
 	control = FALSE;
 	args++;

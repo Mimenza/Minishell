@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 17:01:15 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 07:43:52 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ static void					ft_trim_var_dollar_aux(char *tkn, char *(*src)[3], \
 int							ft_look_4_dollar(char const *tkn, \
 							t_var_list **v_list, char **content);
 static void					ft_look_4_d_aux(char **content, int *i, int max, \
-							t_var_list **v_list, int *quotes);
+							t_var_list **v_list, int (*quotes)[2]);
 
 //READ TABLE
 static t_options			*create_option_node(int array[7]);
@@ -277,7 +277,7 @@ static void					double_quote(char **cmd_ptr, int *control, int *a, \
 							char **joined_tmp);
 static void					process_remaining_quotes(char **cmd_ptr, \
 							char **joined_tmp, int *vault);
-void						remove_quotes_aux(char **cmd_ptr);
+void						remove_quotes_aux(char **cmd_ptr, int mode);
 
 //STEPS UTILS 1
 int							find_state(t_states *states_list, int state_number, \

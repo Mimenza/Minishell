@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 17:19:39 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 08:45:34 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ char **content, int index)
 	tmp = NULL;
 	ft_trim_var_dollar_aux(token, &src, &match_var_name, index);
 	ft_find_variable(match_var_name, v_list, content);
-	tmp = ft_strjoin((*content), src[AFTER], 5);
-	if (ft_strlen(*content) == 0)
-		free(*content);
+	tmp = ft_strjoin((*content), src[AFTER], 15);
 	(*content) = ft_strjoin(src[BEFORE], tmp, 15);
 	free(match_var_name);
 	return (FALSE);
@@ -78,27 +76,26 @@ int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
 		max = ft_strlen(*content);
 		i++;
 	}
-	if (token[0] == '$' && ft_strlen(token) == 1)
-		free((char *)token);
+	// if (token[0] == '$')
+	// 	free((char *)token);
 	return (FALSE);
 }
 
 static void	ft_look_4_d_aux(char **content, int *i, int max, \
-t_var_list **v_list, int *quotes)
+t_var_list **v_list, int (*quotes)[2])
 {
 
 	if ((*content)[*i] == '\'')
-		quotes[SIMPLE] = !quotes[SIMPLE];
+		(*quotes)[SIMPLE] = !(*quotes)[SIMPLE];
 	if ((*content)[*i] == '\"')
-		quotes[DOUBLE] = !quotes[DOUBLE];
-	if (quotes[DOUBLE] == 0 && quotes[SIMPLE] == 0 && (*content)[*i] == '$' && \
+		(*quotes)[DOUBLE] = !(*quotes)[DOUBLE];
+	if ((*quotes)[DOUBLE] == 0 && (*quotes)[SIMPLE] == 0 && (*content)[*i] == '$' && \
 	((*content)[*i + 1] == '\'' || (*content)[*i + 1] == '\"'))
 	{
-		printf("borramoooo\n");
 		del_char(content, *i);
 		*i = -1;
 	}
-	else if ((quotes[SIMPLE] == 0) && (((*content)[*i] == '$') && \
+	else if (((*quotes)[SIMPLE] == 0) && (((*content)[*i] == '$') && \
 	((((*content)[*i + 1] >= 'a') && ((*content)[*i + 1] <= 'z')) || \
 	(((*content)[*i + 1] >= 'A') && ((*content)[*i + 1] <= 'Z')) || \
 	((*content)[*i + 1] >= '_' || ((*content)[*i + 1] >= '?')))))

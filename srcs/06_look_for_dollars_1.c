@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_look_for_dollars_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:19:28 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/01 19:44:21 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 08:45:30 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_find_variable(char *var_name, t_var_list **v_list, char **content)
 		(strlen(var_name) == strlen(current->name))))
 		{
 			free(*content);
-			(*content) = current->content;
+			(*content) = ft_strdup(current->content);
 			return (TRUE);
 		}
 		current = current->next;

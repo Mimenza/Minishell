@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 17:00:49 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 08:56:53 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,8 @@ void	remove_quotes(t_var_parsed_table **head)
 {
 	t_var_parsed_table	*first;
 	int					i;
-	char				*prueba;
+
 	first = *head;
-	printf("->%s<-\n", (*head)->cmd_splited[1]);
 	while ((*head) != NULL)
 	{
 		i = 0;
@@ -104,11 +103,7 @@ void	remove_quotes(t_var_parsed_table **head)
 		{
 			while ((*head)->cmd_splited[i] != NULL)
 			{
-				prueba = (*head)->cmd_splited[i];
-				// printf("->%s<- i vale %d\n", (*head)->cmd_splited[i], i);
-				printf("antes de entrar a remove\n");
-				remove_quotes_aux(&prueba);
-				printf("despues de entrar a remove\n");
+				remove_quotes_aux(&(*head)->cmd_splited[i], 0);
 				i++;
 			}
 		}
@@ -196,7 +191,7 @@ char **joined_tmp, int *vault)
 }
 
 //Aux function to remove the quotes
-void	remove_quotes_aux(char **cmd_ptr)
+void	remove_quotes_aux(char **cmd_ptr, int mode)
 {
 	int		control[2];
 	int		vault[5];
@@ -204,7 +199,10 @@ void	remove_quotes_aux(char **cmd_ptr)
 	char	*joined_tmp;
 
 	tmp = NULL;
-	joined_tmp = ft_strdup("$");
+	if (mode == 1)
+		joined_tmp = ft_strdup("$");
+	else
+		joined_tmp = ft_strdup("");
 	vault[QUOTES] = 0;
 	vault[SIZE] = ft_strlen(*cmd_ptr) - 1;
 	vault[START] = 0;
