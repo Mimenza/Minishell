@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   24_bash_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 06:51:35 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/02 09:55:35 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:42:49 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,43 +97,3 @@ char	**ft_bash_split(char const *s, char cr, int *c)
 	}
 	return (str);
 }
-///////LA ORIGINAL
-// char	**ft_bash_split(char const *s, char c, int *control)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		start;
-// 	int		end;
-// 	char	**str;
-// 	char	*content;
-
-// 	i = 0;
-// 	j = 0;
-// 	str = ft_calloc(ft_count(s, c, control) + 1, sizeof(char *));
-// 	if (!s || !str)
-// 		return (NULL);
-// 	while(s[i] && (control[1] == TRUE && control[0] == TRUE))
-// 	{
-// 		ignore_separator(s, control, &i);
-// 		while ((s[i] == c) && (control[1] == TRUE && control[0] == TRUE))
-// 		{
-// 			i++;
-// 			ignore_separator(s, control, &i);
-// 		}
-// 		start = i;
-// 		while ((s[i] != c && s[i]) || (control[1] \ 
-//== FALSE || control[0] == FALSE))
-// 		{
-// 			i++;
-// 			ignore_separator(s, control, &i);
-// 		}
-// 		end = i;
-// 		if (( end > start))
-// 		{
-// 			str[j++] = ft_substr(s, start, end - start);
-// 			if (check_str(str, j))
-// 				return (NULL);
-// 		}
-// 	}
-// 	return (str);
-// }

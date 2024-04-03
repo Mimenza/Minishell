@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:29:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 10:51:34 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:42:00 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,33 +102,3 @@ t_token	*last_node_stack(t_token *stack)
 		current = current->next;
 	return (current);
 }
-
-////////////LA ORIGINAL
-// void	add_step(t_input *s_input, t_options *option, \ 
-// *tree_stack, t_token *input_token, t_step **c_step)
-// {
-// 	t_step		*step;
-// 	t_states	*state;
-
-// 	step = NULL;
-// 	step = (t_step *)malloc(sizeof(t_step));
-// 	if (step == NULL)
-// 		return ;
-// 	step->step_nbr = (*c_step)->step_nbr + 1;
-// 	step->state_nbr = option->next_state;
-// 	if (find_state(s_input->parsing_table, \ 
-//option->next_state, &state) == FALSE)
-// 	{
-// 		free(state);
-// 		free(step);
-// 		return ;
-// 	}
-// 	step->state = state;
-// 	step->option_nbr = 0;
-// 	step->tree_stack = tree_stack;
-// 	step->input = input_token;
-// 	step->next = NULL;
-// 	step->prev = *c_step;
-// 	(*c_step)->next = step;
-// 	*c_step = step;
-// }

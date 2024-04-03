@@ -6,88 +6,11 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:40:20 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:41:55 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
-//HE CAMBIADO LA MAYORIA DE JOINS PA QUE LIBEREN JOINED TOKEN Y TMP
-// void	remove_quotes_aux(char **cmd_ptr)
-// {
-// 	int		control[2];
-// 	int		start;
-// 	int		i;
-// 	int		end;
-// 	int		size;
-// 	char	*tmp;
-// 	char	*joined_tmp;
-// 	char	quotes_flag;
-
-// 	quotes_flag = 0;
-// 	size = ft_strlen(*cmd_ptr) - 1;
-// 	start = 0;
-// 	i = 0;
-// 	end = 0;
-// 	tmp = NULL;
-// 	control[SIMPLE] = FALSE;
-// 	control[DOUBLE] = FALSE;
-// 	tmp = NULL;
-// 	joined_tmp = ft_strdup("");
-// 	while (i <= size)
-// 	{
-// 		if ((*cmd_ptr)[i] == '\'' && control[DOUBLE] == FALSE)
-// 		{
-// 			if (control[SIMPLE] == FALSE)
-// 			{
-// 				start = i;
-// 				control[SIMPLE] = TRUE;
-// 				if (quotes_flag == 1)
-// 					tmp = ft_substr(*cmd_ptr, end + 1, start - end - 1);
-// 				else
-// 					tmp = ft_substr(*cmd_ptr, end, start - end);
-// 				joined_tmp = ft_strjoin(joined_tmp, tmp, 1);
-// 			}
-// 			else
-// 			{
-// 				quotes_flag = 1;
-// 				end = i;
-// 				control[SIMPLE] = FALSE;
-// 				tmp = ft_substr(*cmd_ptr, start + 1, end - start - 1);
-// 				joined_tmp = ft_strjoin(joined_tmp, tmp, 5);
-// 			}
-// 		}
-// 		if ((*cmd_ptr)[i] == '\"' && control[SIMPLE] == FALSE)
-// 		{
-// 			if (control[DOUBLE] == FALSE)
-// 			{
-// 				start = i;
-// 				control[DOUBLE] = TRUE;
-// 				if (quotes_flag == 1)
-// 					tmp = ft_substr(*cmd_ptr, end + 1, start - end - 1);
-// 				else
-// 					tmp = ft_substr(*cmd_ptr, end, start - end);
-// 				joined_tmp = ft_strjoin(joined_tmp, tmp, 1);
-// 			}
-// 			else
-// 			{
-// 				quotes_flag = 1;
-// 				end = i;
-// 				control[DOUBLE] = FALSE;
-// 				tmp = ft_substr(*cmd_ptr, start + 1, end - start - 1);
-// 				joined_tmp = ft_strjoin(joined_tmp, tmp, 5);
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	if (quotes_flag == 1)
-// 	{
-// 		tmp = ft_substr(*cmd_ptr, end + 1, size - end);
-// 		joined_tmp = ft_strjoin(joined_tmp, tmp, 5);
-// 		*cmd_ptr = joined_tmp;
-// 	}
-// 	else
-// 		free(joined_tmp);
-// }
 
 //Main function to remove the quotes
 void	remove_quotes(t_var_parsed_table **head)

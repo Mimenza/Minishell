@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_analyzer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 20:04:19 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 15:37:16 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:41:40 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,6 @@ static t_token	*assign_token_types(char *raw)
 	new_token->next = NULL;
 	return (new_token);
 }
-
-//Creates the tokens taking the token_raw
-// void create_tokens_analyzer(t_input **struct_input)
-// {
-// 	char **token_raw;
-// 	t_token *tokens;
-// 	int i;
-// 	t_token *new_token;
-// 	t_token *last_token;
-
-// 	token_raw = (*struct_input)->token_raw;
-// 	tokens = NULL;
-// 	i = -1;
-// 	while (token_raw[++i] != NULL)
-// 	{
-// 		new_token = assign_token_types(token_raw[i]);
-// 		if (new_token == NULL)
-// 			return;
-// 		if (tokens == NULL)
-// 		{
-// 			tokens = new_token;
-// 			last_token = tokens;
-// 		}
-// 		else
-// 		{
-// 			last_token->next = new_token;
-// 			last_token = last_token->next;
-// 		}
-// 	}
-// 	add_last_token(last_token, &tokens);
-// 	start_anaylizer(struct_input, tokens);
-// }
 
 void	create_tokens_analyzer(t_input **struct_input)
 {
