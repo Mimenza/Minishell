@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   23_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 07:34:39 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/30 19:44:20 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:23:48 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ t_input **struct_input, t_step *step)
 }
 
 //this function closes the used fds and assigns the pipe fd
-static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
+static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, \
+int fd[2], t_input **struct_input)
 {
+	int		status;
+	char	*tmp;
+
+	status = 0;
+	tmp = NULL;
 	if ((cmd->fd_in != 0 && cmd->fd_in != -1))
 		if (close(cmd->fd_in) < 0)
 			exit(1);
@@ -79,6 +85,12 @@ static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2])
 		cmd->next->fd_in = fd[READ];
 	else
 		close(fd[READ]);
+	if (waitpid(cmd->pid, &status, WNOHANG) == 0)
+	{
+		tmp = ft_itoa(status);
+		ft_var_found(&(*struct_input)->ent_var, "?", tmp);
+		free(tmp);
+	}
 	cmd = cmd->next;
 	return (cmd);
 }
@@ -106,17 +118,13 @@ int fd[2], t_input **struct_input, t_step *step)
 		ft_son_process(cmd_list, struct_input, step);
 	}
 	else
-		cmd_list = father_process(cmd_list, fd);
+		cmd_list = father_process(cmd_list, fd, struct_input);
 	return (cmd_list);
 }
 
 void	ft_make_process(t_var_parsed_table *cmd_list, int fd[2], \
 t_input **struct_input, t_step *step)
 {
-	int		status;
-	char	*tmp;
-
-	status = 0;
 	while (cmd_list)
 	{
 		if (pipe(fd) < 0)
@@ -126,9 +134,6 @@ t_input **struct_input, t_step *step)
 			exit(1);
 		cmd_list = ft_process_utils(cmd_list, fd, struct_input, step);
 	}
-	while (waitpid(-1, &status, 0) > 0)
+	while (waitpid(-1, NULL, 0) > 0)
 		;
-	tmp = ft_itoa(status);
-	ft_var_found(&(*struct_input)->ent_var, "?", tmp);
-	free(tmp);
 }

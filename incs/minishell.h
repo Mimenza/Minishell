@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 07:43:52 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:05:23 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -379,7 +379,7 @@ static void					ft_son_utils(int (*fd)[2], int (*control_fd)[2], \
 							t_var_parsed_table *arg);
 static void					ft_son_process(t_var_parsed_table *arg, \
 							t_input **struct_input, t_step *step);
-static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2]);
+static t_var_parsed_table	*father_process(t_var_parsed_table *cmd, int fd[2], t_input **struct_input);
 static t_var_parsed_table	*ft_process_utils(t_var_parsed_table *cmd_lst, \
 							int fd[2], t_input **struct_input, t_step *step);
 void						ft_make_process(t_var_parsed_table *cmd_list, \

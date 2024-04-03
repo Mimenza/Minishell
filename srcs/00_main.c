@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:43:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 18:31:03 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:16:06 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	prepare_program(t_input **struct_input, char **envp)
 	save_env(envp, struct_input);
 	signal_receiver();
 	read_table(struct_input);
-	ft_var_found(&(*struct_input)->ent_var, "?", "1");
+	ft_var_found(&(*struct_input)->ent_var, "?", "0");
 }
 
 //Checks the input 
