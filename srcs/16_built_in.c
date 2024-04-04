@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   16_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/03 15:40:01 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:11:14 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	get_path_utils(char **path, char **route, char *tmp, char *args)
 			*route = ft_strjoin(*route, "/", 3);
 			*route = ft_strjoin(*route, path[i], 3);
 			if (access(*route, X_OK) != 0)
-				return (print_error(8, NULL, NULL), \
+				return (print_error(8, path[i], NULL), \
 				free(*route), free_double(path), 1);
 		}
 	}
@@ -93,7 +93,7 @@ int	get_path(char *args, t_input **env)
 	if (args[0] == '/')
 	{
 		if (access(args, X_OK) != 0)
-			return (print_error(8, NULL, NULL), 1);
+			return (print_error(8, args, NULL), 1);
 		chdir(args);
 		current->content = ft_strdup(args);
 		return (0);
