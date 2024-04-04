@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:17:46 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:24:41 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ static void					avail_opt(t_input **s_input, t_step **c_step, \
 static void					null_opt(t_step **c_stp, t_token **c_tkn, int *end, \
 							t_options *d_opt);
 static void					analyzer_aux(t_input **s_input, t_step *step, \
-							t_step *c_step);
+							t_step **c_step);
 int							start_anaylizer(t_input **s_input, \
 							t_token *input_token);
 

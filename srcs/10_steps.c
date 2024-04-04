@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:41:46 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:24:09 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_options *d_opt)
 }
 
 //Aux function of the analizer
-static void	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
+static void	analyzer_aux(t_input **s_input, t_step *step, t_step **c_step)
 {
 	t_token		*c_token;
 	int			end_flag;
@@ -59,19 +59,19 @@ static void	analyzer_aux(t_input **s_input, t_step *step, t_step *c_step)
 	c_token = step->input;
 	while (end_flag == FALSE)
 	{
-		d_opt = find_option(c_step->state, -1);
-		a_opt = find_option(c_step->state, c_token->type);
+		d_opt = find_option((*c_step)->state, -1);
+		a_opt = find_option((*c_step)->state, c_token->type);
 		if ((d_opt && (d_opt->next_state == c_token->type)) || ((a_opt == NULL) \
 		&& \
-		(d_opt == NULL) && (c_token->type >= 100) && (c_step->state_nbr != 0)))
-			ret_to_prev(&c_step);
+		(d_opt == NULL) && (c_token->type >= 100) && ((*c_step)->state_nbr != 0)))
+			ret_to_prev(c_step);
 		else if (a_opt != NULL)
 		{
-			apply_action(a_opt, &c_step, c_token, &end_flag);
-			avail_opt(s_input, &c_step, &c_token, a_opt);
+			apply_action(a_opt, c_step, c_token, &end_flag);
+			avail_opt(s_input, c_step, &c_token, a_opt);
 		}
 		else if (a_opt == NULL && d_opt != NULL)
-			null_opt(&c_step, &c_token, &end_flag, d_opt);
+			null_opt(c_step, &c_token, &end_flag, d_opt);
 		else if (a_opt == NULL && d_opt == NULL)
 			break ;
 	}
@@ -87,7 +87,7 @@ int	start_anaylizer(t_input **s_input, t_token *input_token)
 	step = c_step;
 	if (step == NULL)
 		return (print_error(6, NULL, NULL), FALSE);
-	analyzer_aux(s_input, step, c_step);
+	analyzer_aux(s_input, step, &c_step);
 	if ((c_step->tree_stack && (stack_size(c_step->tree_stack) == 2) && \
 	(last_node_stack(c_step->tree_stack)->type == -2)))
 		return (process_p_table(s_input, c_step, step), \
