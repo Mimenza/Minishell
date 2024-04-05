@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_look_for_dollars_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:02:56 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:18:11 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char **var_name, int index)
 	while (token[size1])
 		(*src)[AFTER][size2++] = token[size1++];
 	(*src)[AFTER][size2] = '\0';
-	*var_name = strndup(token + size + 1, (size1 - size - size2 - 1));
+	*var_name = ft_substr(token, (size + 1), (size1 - size - size2 - 1));
 }
 
 //Check in the given input if a variable call is detected
@@ -109,10 +109,3 @@ t_var_list **v_list, int (*quotes)[3])
 		*i = -1;
 	}
 }
-
-	// else if ((((*quotes)[SIMPLE] == 0) || (((*quotes)[SIMPLE] == 1) && \
-	// ((*quotes)[DOUBLE] == 1) && ((*quotes)[RES] == 1))) && \
-	// (((*content)[*i] == '$') && \
-	// ((((*content)[*i + 1] >= 'a') && ((*content)[*i + 1] <= 'z')) || \
-	// (((*content)[*i + 1] >= 'A') && ((*content)[*i + 1] <= 'Z')) || \
-	// ((*content)[*i + 1] >= '_' || ((*content)[*i + 1] >= '?')))))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20_read_tree_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:06:52 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:42:38 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:01:47 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	create_table(t_token *tree, t_var_parsed_table **table_node)
 	(tree->left == NULL && tree->middle == NULL && tree->right == NULL)))
 	{
 		if ((*table_node)->cmd == NULL)
-			(*table_node)->cmd = strdup(tree->data);
+			(*table_node)->cmd = ft_strdup(tree->data);
 		else
 		{
 			(*table_node)->cmd = ft_realloc((*table_node)->cmd, \

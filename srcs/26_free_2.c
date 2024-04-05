@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:00 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/04 16:09:30 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:02:15 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ static void	free_tokens(t_token *token)
 void	free_steps(t_step *steps)
 {
 	t_step	*tmp_step;
-	
-	print_token_list(steps->tree_stack);
-	printf("-----------\n");
-	print_token_list(steps->input);
+
 	free_tokens(steps->input);
 	free_token_tree(steps->tree_stack);
 	while (steps)

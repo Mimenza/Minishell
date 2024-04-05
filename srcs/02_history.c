@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_history.c                                       :+:      :+:    :+:   */
+/*   02_history.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:46:17 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 13:39:21 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:12:49 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 //This function checks if the txt is created
 static int	check_history_file(void)
 {
-	FILE	*file;
+	int	file;
 
-	file = fopen(".history.txt", "r");
-	if (file == NULL)
+	file = open(".history.txt", O_RDONLY);
+	if (file < 0)
 	{
-		file = fopen(".history.txt", "w");
-		if (file == NULL)
+		file = open(".history.txt", O_WRONLY);
+		if (file < 0)
 			return (1);
-		fclose(file);
+		close(file);
 	}
 	else
-		fclose(file);
+		close(file);
 	return (0);
 }
 

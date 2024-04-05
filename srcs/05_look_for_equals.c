@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_look_for_equals.c                               :+:      :+:    :+:   */
+/*   05_look_for_equals.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:59:12 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/30 17:51:12 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:15:46 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void	ft_trim_var_equal(char *token, int e_pos, t_var_list **v_list, int id)
 
 	content_start = e_pos + 1;
 	end = ft_strlen(token);
-	var_name = strndup(token, e_pos);
+	var_name = ft_substr(token, 0, e_pos);
 	if (token[e_pos + 1] == '\'' || token[e_pos + 1] == '\"')
-		var_content = strndup(token + e_pos + 2, (end - 1) - (e_pos + 2));
+		var_content = ft_substr(token, (e_pos + 2), (end - 1) - (e_pos + 2));
 	else
-		var_content = strndup(token + e_pos + 1, end - (e_pos + 1));
+		var_content = ft_substr(token, (e_pos + 1), end - (e_pos + 1));
 	if (ft_var_found(v_list, var_name, var_content) == FALSE)
 		ft_add_var(v_list, var_name, var_content, id);
 	else

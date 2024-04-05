@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_look_for_dollars_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:19:28 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 16:48:17 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:17:01 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	del_char(char **cadena, int position)
 	after = NULL;
 	while (size1 != position)
 		size1++;
-	before = strndup((*cadena), size1);
+	before = ft_substr((*cadena), 0, size1);
 	tmp = size1;
 	while ((*cadena)[++size1] != '\0')
 		size2++;
-	after = strndup((*cadena + (tmp + 1)), size2);
+	after = ft_substr(*cadena, (tmp + 1), size2);
 	free((*cadena));
 	*cadena = ft_strjoin(before, after, 15);
 }
@@ -45,8 +45,8 @@ int	ft_find_variable(char *var_name, t_var_list **v_list, char **content)
 	current = *v_list;
 	while (current)
 	{
-		if ((strncmp(var_name, current->name, INT32_MAX) == 0 && \
-		(strlen(var_name) == strlen(current->name))))
+		if ((ft_strcmp(var_name, current->name) == 0 && \
+		(ft_strlen(var_name) == ft_strlen(current->name))))
 		{
 			free(*content);
 			(*content) = ft_strdup(current->content);
