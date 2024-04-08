@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:09:49 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 10:02:29 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:49:15 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ t_var_list **env, t_var_list	*name, int *size)
 
 static void	ft_empty_export(t_var_list **env)
 {
-	t_var_list	*save;
 	t_var_list	*current;
 	t_var_list	*name;
 	int			size;
 
 	size = 0;
+	name = NULL;
 	current = *env;
 	while (current)
 	{
@@ -63,7 +63,6 @@ int	ft_export(char *var, t_input **struct_input)
 {
 	char	*equal;
 	char	*name;
-	char	*content;
 
 	if (var && (var[0] == '_' || ft_isalpha(var[0]) == 0 || var[0] == '?'))
 		return (print_error(1, NULL, struct_input), FALSE);

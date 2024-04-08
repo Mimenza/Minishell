@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_analyzer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 20:04:19 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:41:40 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:56:05 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ static t_token	*assign_token_types(char *raw)
 	return (new_token);
 }
 
+static void	add_last_token(t_token *last_token, t_token **tokens)
+{
+	t_token	*end_token;
+
+	end_token = assign_token_types("$END");
+	if (end_token != NULL)
+	{
+		if (*tokens == NULL)
+			*tokens = end_token;
+		else
+			last_token->next = end_token;
+	}
+}
+
 void	create_tokens_analyzer(t_input **struct_input)
 {
 	char	**token_raw;
@@ -82,18 +96,4 @@ void	create_tokens_analyzer(t_input **struct_input)
 	}
 	add_last_token(last_token, &tokens);
 	start_anaylizer(struct_input, tokens);
-}
-
-static void	add_last_token(t_token *last_token, t_token **tokens)
-{
-	t_token	*end_token;
-
-	end_token = assign_token_types("$END");
-	if (end_token != NULL)
-	{
-		if (*tokens == NULL)
-			*tokens = end_token;
-		else
-			last_token->next = end_token;
-	}
 }

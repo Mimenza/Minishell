@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:01:29 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 10:11:08 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:52:11 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_input **env, char **posible_paths)
 	return (TRUE);
 }
 
-int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env, t_step *step)
+int	cmd_handle(t_var_parsed_table **cmd_list, t_input **env)
 {
 	t_var_parsed_table	*cmd;
 	char				*path_env;

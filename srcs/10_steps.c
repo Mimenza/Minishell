@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 17:00:25 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:03:06 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 	config_parsed_table(&(*s_input)->parsed_table);
 	expand_var_ent(&(*s_input)->parsed_table, s_input);
 	remove_quotes(&(*s_input)->parsed_table);
-	if (cmd_handle(&(*s_input)->parsed_table, s_input, step) == TRUE)
+	if (cmd_handle(&(*s_input)->parsed_table, s_input) == TRUE)
 	{
 		pipex(s_input, step);
 		signal_receiver();
@@ -41,7 +41,7 @@ t_options *a_opt)
 static void	null_opt(t_step **c_step, t_token **c_token, int *end, \
 t_options *d_opt)
 {
-	apply_action(d_opt, c_step, *c_token, end);
+	apply_action(d_opt, c_step, end);
 	if (last_node_stack((*c_step)->tree_stack)->type >= 100)
 		*c_token = last_node_stack((*c_step)->tree_stack);
 	if (((*c_step)->state_nbr == 22 && (*c_token)->type == 105 && \
@@ -70,7 +70,7 @@ static void	analyzer_aux(t_input **s_input, t_step *step, t_step **c_step)
 			ret_to_prev(c_step);
 		else if (a_opt != NULL)
 		{
-			apply_action(a_opt, c_step, c_token, &end_flag);
+			apply_action(a_opt, c_step, &end_flag);
 			avail_opt(s_input, c_step, &c_token, a_opt);
 		}
 		else if (a_opt == NULL && d_opt != NULL)

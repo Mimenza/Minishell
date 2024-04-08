@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:19:28 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 08:17:01 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:39:14 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	expand_var_ent(t_var_parsed_table **table, t_input **struct_input)
 		cmd = current->cmd_splited;
 		while (cmd[i])
 		{
-			ft_look_4_dollar(cmd[i], &(*struct_input)->ent_var, &cmd[i]);
+			ft_look_4_dollar(&(*struct_input)->ent_var, &cmd[i]);
 			ft_look_4_equal(cmd[i], &(*struct_input)->ent_var, 0);
 			i++;
 		}

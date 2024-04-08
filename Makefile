@@ -6,7 +6,7 @@
 #    By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 11:36:49 by emimenza          #+#    #+#              #
-#    Updated: 2024/04/03 08:39:41 by anurtiag         ###   ########.fr        #
+#    Updated: 2024/04/08 10:31:24 by anurtiag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,13 +55,13 @@ all: libft gnl $(NAME)
 
 #Compilar 
 $(NAME):$(OBJ)
-		@$(CC) $(OBJ) $(LIBS) $(LDFLAGS) -o $(NAME)
+		@$(CC) $(OBJ) $(LIBS) $(LDFLAGS) $(CCFLAGS) -o $(NAME)
 		@echo "$(GREEN)MINISHELL HAS BEEN COMPILED!$(NC)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(YELLOW)Compiling: $<$(NC)"
-	@$(CC) $(CFLAGS) $(RLFLAGS) -o $@ -c $<
+	@$(CC) $(CCFLAGS) $(RLFLAGS) -o $@ -c $<
 	@echo "$(YELLOW)Compiled!$(NC)"
 
 
