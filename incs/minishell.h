@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 12:21:26 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:12 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <sys/ioctl.h>
 # include <stdlib.h>
 # include <signal.h>
 # include <string.h>
@@ -198,6 +199,7 @@ void						save_history(char	*input);
 
 //SIGNAL
 static void					signal_handler(int signal);
+void						exec_signal_receiver(int mode);
 void						signal_receiver(void);
 
 //VARIABLES

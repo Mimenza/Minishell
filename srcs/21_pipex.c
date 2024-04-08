@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   21_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:13:42 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/03 15:17:33 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:59:03 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	pipex(t_input **struct_input, t_step *step)
 	control[0] = TRUE;
 	control[1] = TRUE;
 	cmd_list = (*struct_input)->parsed_table;
+	exec_signal_receiver(0);//LLAMADA AL SIGNAL_RECEIVER PARA EL PIPEX
 	if (!cmd_list->next)
 		ft_built_in1(cmd_list, struct_input, &control, step);
 	if (control[0] == FALSE)
@@ -69,5 +70,6 @@ int	pipex(t_input **struct_input, t_step *step)
 	ft_make_process(cmd_list, fd, struct_input, step);
 	if (access(".tempfile.txt", F_OK) == 0)
 		unlink(".tempfile.txt");
+	//exec_signal_receiver(1);
 	return (0);
 }

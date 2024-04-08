@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 10:08:17 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:00:25 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 	remove_quotes(&(*s_input)->parsed_table);
 	if (cmd_handle(&(*s_input)->parsed_table, s_input, step) == TRUE)
 	{
-		printf("donde petas\n");
 		pipex(s_input, step);
+		signal_receiver();
 	}
 	read_tree(c_step->tree_stack, &(*s_input)->parsed_table, 2);
 }

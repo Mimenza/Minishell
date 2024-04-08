@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   00_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:43:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:16:06 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:24:24 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-int	g_main_loop;
+//int	g_main_loop;
 
 //Analize the input looking for errors
 static int	analyze_input(char **input, t_input **struct_input)
@@ -71,19 +71,16 @@ int	main(int argc, char **argv, char **envp)
 		return (print_error(1, NULL, NULL), 2);
 	(void)argv;
 	input = NULL;
-	g_main_loop = 1;
 	prepare_program(&struct_input, envp);
 	while (1)
 	{
 		input = readline("custom_bash$");
 		if (input == NULL)
 			break ;
-		g_main_loop = 0;
 		if (check_input(&input, &struct_input) == TRUE)
 			create_tokens_analyzer(&struct_input);
 		if (input)
 			save_history(input);
-		g_main_loop = 1;
 		free_double(struct_input->token_raw);
 		struct_input->token_raw = NULL;
 	}
