@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:41:16 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:41:55 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:32:35 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,8 @@ void	remove_quotes_aux(char **cmd_ptr, int mode)
 {
 	int		control[2];
 	int		vault[5];
-	char	*tmp;
 	char	*joined_tmp;
 
-	tmp = NULL;
 	if (mode == 1)
 		joined_tmp = ft_strdup("$");
 	else

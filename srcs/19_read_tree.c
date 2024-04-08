@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:46:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:42:28 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:34:00 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ t_var_parsed_table	*init_parsed_table(t_var_parsed_table *prev_table)
 //Looks for sub_trees in the main tree
 void	walk_tree(t_var_parsed_table **parsed_table, t_token *tree)
 {
-	int	control;
-
-	control = TRUE;
 	if (tree->left && tree->left->type == 100)
 		walk_tree(parsed_table, tree->left);
 	if (tree->left && tree->left->type == 100)

@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:58:27 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:42:06 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:33:37 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_step	*init_first_step(t_input **struct_input, t_token *input_token)
 	if (find_state((*struct_input)->parsing_table, 0, &state) == FALSE)
 	{
 		free(first_step);
+		first_step = NULL;
 		return (first_step);
 	}
 	first_step->state = state;

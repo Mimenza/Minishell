@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   22_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 10:56:44 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:34:19 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	ft_verify_cmd(char **paths, t_var_parsed_table *cmd, t_input **env)
 	size_t	i;
 	char	*str;
 	char	*str_tmp;
-	int		control;
 
-	control = TRUE;
 	i = -1;
 	if (ft_strcmp(cmd->cmd_splited[0], ".") == 0)
 		return (print_error(12, cmd->cmd_splited[0], env), FALSE);

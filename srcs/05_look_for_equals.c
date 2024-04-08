@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05_look_for_equals.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:59:12 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 08:15:46 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:32:03 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ void	ft_trim_var_equal(char *token, int e_pos, t_var_list **v_list, int id)
 {
 	char	*var_name;
 	char	*var_content;
-	int		content_start;
 	int		end;
 
-	content_start = e_pos + 1;
 	end = ft_strlen(token);
 	var_name = ft_substr(token, 0, e_pos);
 	if (token[e_pos + 1] == '\'' || token[e_pos + 1] == '\"')
