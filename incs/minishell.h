@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 17:03:52 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:57:01 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void						load_history(void);
 void						save_history(char	*input);
 
 //SIGNAL
-void						exec_signal_receiver(int mode);
+void						exec_signal_receiver(void);
 void						signal_receiver(void);
 
 //VARIABLES

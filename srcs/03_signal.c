@@ -6,13 +6,13 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:03:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 16:57:46 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:04:39 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-//extern int	g_exit;
+int	g_exit;
 
 static void exec_handle_signal(int sig)
 {
@@ -21,17 +21,17 @@ static void exec_handle_signal(int sig)
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		//g_exit = 130;
+		g_exit = 130;
 	}
 	if (sig == SIGQUIT)
 	{
 		printf("quit: %i\n", sig);
-		//g_exit = 131;
+		g_exit = 131;
 	}
 
 }
 
-void exec_signal_receiver(int mode)
+void exec_signal_receiver(void)
 {
 	struct sigaction sa;
 
@@ -40,11 +40,6 @@ void exec_signal_receiver(int mode)
 	sa.sa_handler = exec_handle_signal;
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
-	if (mode == 1)
-	{
-	sigaction(SIGINT, &(struct sigaction){0}, NULL);
-	sigaction(SIGQUIT, &(struct sigaction){0}, NULL);
-	}
 }
 
 //Handles the signals

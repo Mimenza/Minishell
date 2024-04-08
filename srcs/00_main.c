@@ -6,13 +6,11 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:43:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 16:24:24 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:57:17 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
-
-//int	g_main_loop;
 
 //Analize the input looking for errors
 static int	analyze_input(char **input, t_input **struct_input)
@@ -44,7 +42,6 @@ static void	prepare_program(t_input **struct_input, char **envp)
 	save_env(envp, struct_input);
 	signal_receiver();
 	read_table(struct_input);
-	ft_var_found(&(*struct_input)->ent_var, "?", "0");
 }
 
 //Checks the input 

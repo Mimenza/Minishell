@@ -6,11 +6,13 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:13:42 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 16:59:03 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:09:33 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
+
+extern int	g_exit;
 
 //Custom function to get the env
 char	*ft_getenv(t_var_list **list, char *name)
@@ -60,7 +62,7 @@ int	pipex(t_input **struct_input, t_step *step)
 	control[0] = TRUE;
 	control[1] = TRUE;
 	cmd_list = (*struct_input)->parsed_table;
-	exec_signal_receiver(0);//LLAMADA AL SIGNAL_RECEIVER PARA EL PIPEX
+	exec_signal_receiver();//LLAMADA AL SIGNAL_RECEIVER PARA EL PIPEX
 	if (!cmd_list->next)
 		ft_built_in1(cmd_list, struct_input, &control, step);
 	if (control[0] == FALSE)
@@ -70,6 +72,8 @@ int	pipex(t_input **struct_input, t_step *step)
 	ft_make_process(cmd_list, fd, struct_input, step);
 	if (access(".tempfile.txt", F_OK) == 0)
 		unlink(".tempfile.txt");
-	//exec_signal_receiver(1);
+	if (g_exit != 0)
+		ft_var_found(&(*struct_input)->ent_var, "?", ft_itoa(g_exit));
+	g_exit = 0;
 	return (0);
 }
