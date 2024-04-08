@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:01:29 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/02 16:57:03 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:11:08 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_input **env, char **path_env)
 	else if (ft_strlen(cmd->cmd_splited[0]) == 0)
 		return (print_error(10, cmd->cmd_splited[0], env), NULL);
 	*path_env = ft_getenv(&(*env)->ent_var, "PATH");
-	if (!path_env)
+	if (!(*path_env))
 		return (NULL);
 	posible_paths = ft_split(*path_env, ':');
 	return (posible_paths);

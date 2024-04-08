@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:09:49 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/05 08:51:58 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:02:29 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	ft_unset(char *name, t_input **struct_input)
 				current->next = current->next->next;
 			else
 				current->next = NULL;
-			return (free(tmp), free(tmp->name), free(tmp->content));
+			return (free(tmp->name), free(tmp->content), free(tmp));
 		}
 		current = current->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 13:13:23 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:08:17 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	process_p_table(t_input **s_input, t_step *c_step, t_step *step)
 	expand_var_ent(&(*s_input)->parsed_table, s_input);
 	remove_quotes(&(*s_input)->parsed_table);
 	if (cmd_handle(&(*s_input)->parsed_table, s_input, step) == TRUE)
+	{
+		printf("donde petas\n");
 		pipex(s_input, step);
+	}
 	read_tree(c_step->tree_stack, &(*s_input)->parsed_table, 2);
 }
 
