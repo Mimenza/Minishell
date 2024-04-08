@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   10_actions_utils.c                                 :+:      :+:    :+:   */
+/*   15_actions_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:21:30 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/29 14:22:05 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:40:59 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //Apply the action received 
 void	apply_action(t_options *opts, t_step **c_step, \
-t_token *c_token, int *end)
+int *end)
 {
 	int	action_type;
 

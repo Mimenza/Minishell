@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_variables.c                                     :+:      :+:    :+:   */
+/*   04_variables.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:23:12 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/26 13:41:05 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:36:50 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 //Prints the enviroment vars
-static void	print_env(char	**env)
+void	print_env(char	**env)
 {
 	while (*env)
 	{

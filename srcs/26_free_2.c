@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:00 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/05 08:50:15 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:51:07 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	free_steps(t_step *steps, int mode)
 void	free_all(t_input *struct_input, char *history)
 {
 	t_var_list			*tmp_env;
-	t_var_parsed_table	*tmp_parsed;
 
 	free(history);
 	while ((struct_input)->ent_var)

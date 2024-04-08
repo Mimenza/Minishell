@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/05 09:00:28 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:48:07 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ int	get_path(char *args, t_input **env)
 	char		**path;
 	char		*tmp;
 	char		*route;
-	size_t		i;
 	t_var_list	*current;
 
-	i = -1;
+	path = NULL;
+	tmp = NULL;
 	current = (*env)->ent_var;
 	while (ft_strcmp(current->name, "PWD") != 0)
 		current = current->next;
@@ -94,10 +94,9 @@ int	get_path(char *args, t_input **env)
 	{
 		if (access(args, X_OK) != 0)
 			return (print_error(8, args, NULL), 1);
-		chdir(args);
 		ft_var_found(&(*env)->ent_var, "OLDPWD", current->content);
 		current->content = ft_strdup(args);
-		return (0);
+		return (chdir(args), 0);
 	}
 	if (get_path_utils(path, &route, tmp, args) != 0)
 		return (1);

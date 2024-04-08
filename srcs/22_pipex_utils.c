@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   22_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:46:50 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/03 15:37:42 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:56:44 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,32 +80,6 @@ int	relative_path(t_var_parsed_table *cmd, t_input **env)
 	return (free_double(path), TRUE);
 }
 
-//Custom here doc function
-int	ft_here_doc(char **end, int fd)
-{
-	char	*delimiter;
-	char	*line;
-	int		outfile;
-	char	*output;
-	char	*tmp;
-
-	if (end == NULL)
-		return (print_error(11, NULL, NULL), 1);
-	remove_quotes_aux(end, 0);
-	output = ft_strdup("");
-	delimiter = ft_strjoin(*end, "\n", 1);
-	while (1)
-	{
-		write(1, "Minishell heredoc> ", 19);
-		line = get_next_line(fd);
-		if (ft_strcmp(delimiter, line) == 0)
-			break ;
-		output = ft_strjoin(output, line, 15);
-	}
-	free_here_doc(&delimiter, &output, &line, &outfile);
-	return (outfile);
-}
-
 //Free the here doc utils
 static void	free_here_doc(char **limiter, char **output, \
 char **line, int *outfile)
@@ -124,4 +98,29 @@ char **line, int *outfile)
 	if (close(*outfile) < 0)
 		return ;
 	*outfile = open(".tempfile.txt", O_RDONLY);
+}
+
+//Custom here doc function
+int	ft_here_doc(char **end, int fd)
+{
+	char	*delimiter;
+	char	*line;
+	int		outfile;
+	char	*output;
+
+	if (end == NULL)
+		return (print_error(11, NULL, NULL), 1);
+	remove_quotes_aux(end, 0);
+	output = ft_strdup("");
+	delimiter = ft_strjoin(*end, "\n", 1);
+	while (1)
+	{
+		write(1, "Minishell heredoc> ", 19);
+		line = get_next_line(fd);
+		if (ft_strcmp(delimiter, line) == 0)
+			break ;
+		output = ft_strjoin(output, line, 15);
+	}
+	free_here_doc(&delimiter, &output, &line, &outfile);
+	return (outfile);
 }

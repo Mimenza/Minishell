@@ -6,31 +6,11 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:53:59 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 08:18:11 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:55:51 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
-
-//Trims the token looking for the var name
-static int	ft_trim_var_dollar(char *token, t_var_list **v_list, \
-char **content, int index)
-{
-	char	*match_var_name;
-	char	*tmp;
-	char	*src[3];
-
-	src[BEFORE] = NULL;
-	src[AFTER] = NULL;
-	src[2] = NULL;
-	tmp = NULL;
-	ft_trim_var_dollar_aux(token, &src, &match_var_name, index);
-	ft_find_variable(match_var_name, v_list, content);
-	tmp = ft_strjoin((*content), src[AFTER], 15);
-	(*content) = ft_strjoin(src[BEFORE], tmp, 15);
-	free(match_var_name);
-	return (FALSE);
-}
 
 static void	ft_trim_var_dollar_aux(char *token, char *(*src)[3], \
 char **var_name, int index)
@@ -59,24 +39,23 @@ char **var_name, int index)
 	*var_name = ft_substr(token, (size + 1), (size1 - size - size2 - 1));
 }
 
-//Check in the given input if a variable call is detected
-int	ft_look_4_dollar(char const *token, t_var_list **v_list, char **content)
+//Trims the token looking for the var name
+static int	ft_trim_var_dollar(char *token, t_var_list **v_list, \
+char **content, int index)
 {
-	int	i;
-	int	max;
-	int	quotes[3];
+	char	*match_var_name;
+	char	*tmp;
+	char	*src[3];
 
-	quotes[SIMPLE] = FALSE;
-	quotes[DOUBLE] = FALSE;
-	quotes[RES] = 0;
-	max = ft_strlen(*content);
-	i = 0;
-	while (i < max)
-	{
-		ft_look_4_d_aux(content, &i, v_list, &quotes);
-		max = ft_strlen(*content);
-		i++;
-	}
+	src[BEFORE] = NULL;
+	src[AFTER] = NULL;
+	src[2] = NULL;
+	tmp = NULL;
+	ft_trim_var_dollar_aux(token, &src, &match_var_name, index);
+	ft_find_variable(match_var_name, v_list, content);
+	tmp = ft_strjoin((*content), src[AFTER], 15);
+	(*content) = ft_strjoin(src[BEFORE], tmp, 15);
+	free(match_var_name);
 	return (FALSE);
 }
 
@@ -108,4 +87,25 @@ t_var_list **v_list, int (*quotes)[3])
 		ft_trim_var_dollar(*content, v_list, content, *i);
 		*i = -1;
 	}
+}
+
+//Check in the given input if a variable call is detected
+int	ft_look_4_dollar(t_var_list **v_list, char **content)
+{
+	int	i;
+	int	max;
+	int	quotes[3];
+
+	quotes[SIMPLE] = FALSE;
+	quotes[DOUBLE] = FALSE;
+	quotes[RES] = 0;
+	max = ft_strlen(*content);
+	i = 0;
+	while (i < max)
+	{
+		ft_look_4_d_aux(content, &i, v_list, &quotes);
+		max = ft_strlen(*content);
+		i++;
+	}
+	return (FALSE);
 }
