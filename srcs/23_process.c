@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 07:34:39 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 16:38:38 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:14:30 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_var_parsed_table *arg)
 	(*fd)[WRITE] = 0;
 	(*control_fd)[READ] = 0;
 	(*control_fd)[WRITE] = 0;
-	
 	if (arg->fd_in != 0)
 	{
 		(*fd)[READ] = dup2(arg->fd_in, STDIN_FILENO);

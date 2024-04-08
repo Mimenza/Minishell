@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:03:55 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 19:04:39 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:13:56 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_exit;
 
-static void exec_handle_signal(int sig)
+static void	exec_handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -28,12 +28,11 @@ static void exec_handle_signal(int sig)
 		printf("quit: %i\n", sig);
 		g_exit = 131;
 	}
-
 }
 
-void exec_signal_receiver(void)
+void	exec_signal_receiver(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;

@@ -6,7 +6,7 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:13:42 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 19:09:33 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:13:07 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	pipex(t_input **struct_input, t_step *step)
 	control[0] = TRUE;
 	control[1] = TRUE;
 	cmd_list = (*struct_input)->parsed_table;
-	exec_signal_receiver();//LLAMADA AL SIGNAL_RECEIVER PARA EL PIPEX
+	exec_signal_receiver();
 	if (!cmd_list->next)
 		ft_built_in1(cmd_list, struct_input, &control, step);
 	if (control[0] == FALSE)
