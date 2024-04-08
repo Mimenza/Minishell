@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:46:17 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/05 08:12:49 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/05 09:51:31 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_history_file(void)
 	file = open(".history.txt", O_RDONLY);
 	if (file < 0)
 	{
-		file = open(".history.txt", O_WRONLY);
+		file = open(".history.txt", O_WRONLY | O_CREAT);
 		if (file < 0)
 			return (1);
 		close(file);

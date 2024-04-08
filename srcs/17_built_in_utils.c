@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   17_built_in_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:09:49 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/30 18:59:43 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:51:58 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_eexit(char **arg, t_input **struct_input, t_step *step)
 	if (!arg[1])
 	{
 		free_all(*struct_input, (*struct_input)->input);
-		free_steps(step);
+		free_steps(step, 0);
 		exit(0);
 	}
 	while (arg[1][++i])
@@ -101,13 +101,13 @@ void	ft_eexit(char **arg, t_input **struct_input, t_step *step)
 		{
 			printf("exit: %s: numeric argument required\n", arg[1]);
 			free_all(*struct_input, (*struct_input)->input);
-			free_steps(step);
+			free_steps(step, 0);
 			exit(255);
 		}
 	}
 	num = ft_atoi(arg[1]);
 	free_all(*struct_input, (*struct_input)->input);
-	free_steps(step);
+	free_steps(step, 0);
 	printf("exit\n");
 	exit(num % 256);
 }

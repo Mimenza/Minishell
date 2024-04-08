@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:30:01 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/04 14:24:09 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:13:23 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	analyzer_aux(t_input **s_input, t_step *step, t_step **c_step)
 	{
 		d_opt = find_option((*c_step)->state, -1);
 		a_opt = find_option((*c_step)->state, c_token->type);
-		if ((d_opt && (d_opt->next_state == c_token->type)) || ((a_opt == NULL) \
-		&& \
-		(d_opt == NULL) && (c_token->type >= 100) && ((*c_step)->state_nbr != 0)))
+		if ((d_opt && (d_opt->next_state == c_token->type)) || \
+		((a_opt == NULL) && (d_opt == NULL) && \
+		(c_token->type >= 100) && ((*c_step)->state_nbr != 0)))
 			ret_to_prev(c_step);
 		else if (a_opt != NULL)
 		{
@@ -91,10 +91,10 @@ int	start_anaylizer(t_input **s_input, t_token *input_token)
 	if ((c_step->tree_stack && (stack_size(c_step->tree_stack) == 2) && \
 	(last_node_stack(c_step->tree_stack)->type == -2)))
 		return (process_p_table(s_input, c_step, step), \
-		free_steps(step), TRUE);
+		free_steps(step, 0), TRUE);
 	else if (special_case((*s_input)->input))
-		return (free_steps(c_step), FALSE);
+		return (free_steps(c_step, 1), FALSE);
 	else
-		return (free_steps(c_step), print_error(7, NULL, s_input), FALSE);
+		return (free_steps(c_step, 1), print_error(7, NULL, s_input), FALSE);
 	return (FALSE);
 }

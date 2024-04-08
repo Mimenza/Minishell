@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/04 14:24:41 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:21:26 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,26 @@
 # define SIZE 3
 # define QUOTES 4
 //READ_TREE
-# define FIRST 0	//first flag
-# define RTF 1		//redirection to flag
-# define RFF 2		//redirection from flag
-# define HDF 3		//here doc flag
-# define APPF 4		//append flag
-# define EF 5		//error flag
-# define FD 6		//file descriptor
-
+# define FIRST 0		//first flag
+# define RTF 1			//redirection to flag
+# define RFF 2			//redirection from flag
+# define HDF 3			//here doc flag
+# define APPF 4			//append flag
+# define EF 5			//error flag
+# define FD 6			//file descriptor
 //05_LOOK_FOR_DOLARS_2
-# define AFTER 0
-# define BEFORE 1
+# define AFTER 0		//index for the after of the dolar sign
+# define BEFORE 1		//index for the before of the dolar sign
 //READ_TABLE
-# define F_D 0
-# define OPTION_INDEX 1
-# define STATE 2
-# define T_TYPE 3
-# define ACTION 4
-# define NEXT_STATE 5
-# define NBR_RED 6
-# define STATE_LIST 0
-# define C_STATE 1
+# define F_D 0			//index of the array for the fd value
+# define OPTION_INDEX 1	//index of the array for option index
+# define STATE 2		//index of the array for the state value
+# define T_TYPE 3		//index pf the array with the token type value
+# define ACTION 4		//index for the action, (shift, go or reduce)
+# define NEXT_STATE 5	//index for the next state value
+# define NBR_RED 6		//idex for the number of reduced tokens value
+# define STATE_LIST 0	//index for all the states values
+# define C_STATE 1		//index for the current state value
 //STEP_UTILS_2
 # define I 0
 # define MAX 1
@@ -67,14 +66,6 @@
 # define TOKEN_4 3
 # define START_STACK 4
 # define JOIN_TOKEN 5
-// # define STATES_LIST 0
-// # define CURRENT_STATE 1
-
-// # define STEP 0
-// # define C_STEP 1
-
-// # define DEF_OPT 0
-// # define AVAIL_OPT 1
 //14_BASH_SPLIT
 # define I 0
 # define J 1
@@ -85,31 +76,28 @@
 # define TRUE 1
 # define ERROR -1
 
-# define SPACE_M 32
-# define REDUCE -1
-# define WORD 0
-# define RED_TO 1
-# define RED_FROM 2
-# define DLESS 3
-# define DGREAT 4
-# define PIPE 5
-# define PIPE_SEQUENCE 100
-# define SIMPLE_CMD 101
-# define CMD_NAME 102
-# define CMD_WORD 103
-# define CMD_PREFIX 104
-# define CMD_SUFFIX 105
-# define IO_REDIRECT 106
-# define IO_FILE 107
-# define FILENAME 108
-# define IO_HERE 109
-# define HERE_END 110
-# define READ 0
-# define WRITE 1
-
-# ifndef ALLOW_WRITE
-#  define ALLOW_WRITE 0
-# endif
+# define SPACE_M 32			//space code in ascii
+# define REDUCE -1			//reduce action value
+# define WORD 0				//simple token, any token thats not an operator
+# define RED_TO 1			//simple token, operator '<'
+# define RED_FROM 2			//simple token, operator '>'
+# define DLESS 3			//simple token, operator '<<'
+# define DGREAT 4			//simple token, operator '>>'
+# define PIPE 5				//simple token, operator '|'
+# define PIPE_SEQUENCE 100	//compound token, made with simple_cmd + pipe
+# define SIMPLE_CMD 101		//compound token, made with cmd_prefix + cmd_name + cmd_suffix
+# define CMD_NAME 102		//compound token, the cmd name
+# define CMD_WORD 103		//compound token, 
+# define CMD_PREFIX 104		//compound token, ussualy made with redirections
+# define CMD_SUFFIX 105		//compound token, ussualy made with options or arguments of the cmd and redireccions
+# define IO_REDIRECT 106	//compound token, made with the redirection operator + filename
+# define IO_FILE 107		//compound token,
+# define FILENAME 108		//compound token, the file of the redirections
+# define IO_HERE 109		//compound token,
+# define HERE_END 110		//compound token, limiter of the here_doc
+# define READ 0				//standard input
+# define WRITE 1			//standard output
+# define ALLOW_WRITE 0
 
 //Options of a state
 typedef struct s_options
@@ -405,7 +393,7 @@ void						free_options(t_options *options);
 static void					free_states(t_states *states);
 void						free_double(char **double_ptr);
 static void					free_tokens(t_token *token);
-void						free_steps(t_step *steps);
+void						free_steps(t_step *steps, int mode);
 void						free_all(t_input *struct_input, char *history);
 
 //TOKENIZATION

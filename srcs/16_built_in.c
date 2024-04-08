@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/04 16:11:14 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/05 09:00:28 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,14 @@ int	get_path(char *args, t_input **env)
 		if (access(args, X_OK) != 0)
 			return (print_error(8, args, NULL), 1);
 		chdir(args);
+		ft_var_found(&(*env)->ent_var, "OLDPWD", current->content);
 		current->content = ft_strdup(args);
 		return (0);
 	}
 	if (get_path_utils(path, &route, tmp, args) != 0)
 		return (1);
 	tmp = current->content;
+	ft_var_found(&(*env)->ent_var, "OLDPWD", current->content);
 	current->content = ft_strdup(route);
 	return (chdir(route), free(tmp), free(route), 0);
 }
@@ -128,6 +130,7 @@ int	ft_cd(char **args, t_input **env)
 			if (chdir(home) != 0)
 				return (1);
 		}
+		ft_var_found(&(*env)->ent_var, "OLDPWD", current->content);
 		free(current->content);
 		current->content = ft_strdup(home);
 	}
