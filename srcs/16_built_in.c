@@ -6,14 +6,14 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:07 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:18:47 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 //Custom echo function
-void	ft_echo(char **args, int fd)
+void	ft_echo(char **args, int fd, t_input **struct_input)
 {
 	size_t	i;
 	int		control;
@@ -34,6 +34,7 @@ void	ft_echo(char **args, int fd)
 	}
 	if (control == FALSE)
 		ft_putstr_fd("\n", fd);
+	ft_var_found(&(*struct_input)->ent_var, "?", "0");
 }
 
 //Custom pwd function
@@ -45,6 +46,7 @@ int	ft_pwd(t_input **env)
 	while (ft_strcmp(current->name, "PWD") != 0)
 		current = current->next;
 	printf("%s\n", current->content);
+	ft_var_found(&(*env)->ent_var, "?", "0");
 	return (0);
 }
 
@@ -119,19 +121,18 @@ int	ft_cd(char **args, t_input **env)
 		current = current->next;
 	while (args[i])
 		i++;
-	if (i > 1)
-		get_path(args[1], env);
-	else
+	if (i <= 1)
 	{
 		home = getenv("HOME");
 		if (access(home, X_OK) == 0)
-		{
 			if (chdir(home) != 0)
-				return (1);
-		}
+				return (ft_var_found(&(*env)->ent_var, "?", "1"), 1);
 		ft_var_found(&(*env)->ent_var, "OLDPWD", current->content);
 		free(current->content);
 		current->content = ft_strdup(home);
 	}
-	return (0);
+	else
+		if (get_path(args[1], env) != 0)
+			return (ft_var_found(&(*env)->ent_var, "?", "1"), 1);
+	return (ft_var_found(&(*env)->ent_var, "?", "0"), 0);
 }

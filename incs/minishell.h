@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 18:57:01 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:41:08 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@
 # define ERROR -1
 
 # define SPACE_M 32			//space code in ascii
+# define TAB_M 9			//tab code in ascii
 # define REDUCE -1			//reduce action value
 # define WORD 0				//simple token, any token thats not an operator
 # define RED_TO 1			//simple token, operator '<'
@@ -260,7 +261,7 @@ void						apply_action(t_options *opts, t_step **c_step, \
 							int *end);
 
 //BUILT IN
-void						ft_echo(char **args, int fd);
+void						ft_echo(char **args, int fd, t_input **struct_input);
 int							ft_pwd(t_input **env);
 int							get_path_utils(char **path, char **route, \
 							char *tmp, char *args);
@@ -318,11 +319,12 @@ void						ft_make_process(t_var_parsed_table *cmd_list, \
 							int fd[2], t_input **struct_input, t_step *step);
 
 //BASH SPLIT
-char						**ft_bash_split(char const *s, char cr, int *c);
+char						**ft_bash_split(char const *s, int array[2], int *c);
 
 //FREE
 void						free_token_tree(t_token *head);
 void						free_options(t_options *options);
+void						free_var(t_var_list *list);
 
 //FREE 2
 void						free_double(char **double_ptr);

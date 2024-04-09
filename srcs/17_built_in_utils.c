@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:09:49 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/08 10:49:15 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:18:58 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	ft_empty_export(t_var_list **env)
 		current->is_printed = 0;
 		current = current->next;
 	}
+	ft_var_found(env, "?", "0");
 }
 
 //Exports the var to the env
@@ -74,10 +75,14 @@ int	ft_export(char *var, t_input **struct_input)
 	{
 		name = ft_substr(var, 0, equal - var);
 		add_var(name, &(*struct_input)->ent_var, (equal + 1));
+		ft_var_found(&(*struct_input)->ent_var, "?", "0");
 		free(name);
 	}
 	else
+	{
 		add_var(var, &(*struct_input)->ent_var, NULL);
+		ft_var_found(&(*struct_input)->ent_var, "?", "0");
+	}
 	return (TRUE);
 }
 
@@ -112,17 +117,18 @@ void	ft_eexit(char **arg, t_input **struct_input, t_step *step)
 }
 
 //Custom unset function
-void	ft_unset(char *name, t_input **struct_input)
+void	ft_unset(char *name, t_input **env)
 {
 	t_var_list	*current;
 	t_var_list	*tmp;
 
 	if (!name || ft_strlen(name) == 0)
-		return ;
-	current = (*struct_input)->ent_var;
+		return ((void)ft_var_found(&(*env)->ent_var, "?", "1"));
+	current = (*env)->ent_var;
 	if (ft_strcmp(current->name, name) == 0)
 	{
-		(*struct_input)->ent_var = current->next;
+		(*env)->ent_var = current->next;
+		ft_var_found(&(*env)->ent_var, "?", "0");
 		return (free(current->content), free(current->name), free(current));
 	}
 	while (current->next)
@@ -134,8 +140,8 @@ void	ft_unset(char *name, t_input **struct_input)
 				current->next = current->next->next;
 			else
 				current->next = NULL;
-			return (free(tmp->name), free(tmp->content), free(tmp));
 		}
 		current = current->next;
 	}
+	return (free_var(tmp), (void)ft_var_found(&(*env)->ent_var, "?", "0"));
 }

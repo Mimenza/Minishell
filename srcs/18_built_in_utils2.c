@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:18:21 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/04/03 15:10:41 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:17:49 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ t_input **struct_input, int (*control)[2], t_step *step)
 	if (ft_strcmp(cmd_list->cmd_splited[0], "echo") == 0)
 	{
 		if ((*control)[1] == FALSE)
-			ft_echo(cmd_list->cmd_splited, 1);
+			ft_echo(cmd_list->cmd_splited, 1, struct_input);
 		else
-			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out);
+			ft_echo(cmd_list->cmd_splited, cmd_list->fd_out, struct_input);
 		(*control)[0] = FALSE;
 	}
 	else if (ft_strcmp(cmd_list->cmd_splited[0], "pwd") == 0)

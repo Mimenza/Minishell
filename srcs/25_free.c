@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:17:49 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/02 15:48:03 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:54:09 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,11 @@ void	free_options(t_options *options)
 		options = options->next;
 		free(current_option);
 	}
+}
+
+void	free_var(t_var_list *list)
+{
+	free(list->name);
+	free(list->content);
+	free(list);
 }

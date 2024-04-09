@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   13_steps_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:58:27 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/08 18:33:37 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:49:01 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	config_parsed_table(t_var_parsed_table **current)
 {
 	int					array[2];
 	int					control[2];
-	t_var_parsed_table	*f_node;
+	t_var_parsed_table	*n;
 
 	array[I] = 0;
 	array[MAX] = 0;
@@ -40,16 +40,16 @@ void	config_parsed_table(t_var_parsed_table **current)
 		array[MAX]++;
 		(*current) = (*current)->prev;
 	}
-	f_node = *current;
-	while (f_node != NULL)
+	n = *current;
+	while (n != NULL)
 	{
-		if (array[I] == 0 && (f_node->fd_in == -1))
-			f_node->fd_in = 0;
-		if (f_node->cmd != NULL)
-			f_node->cmd_splited = ft_bash_split(f_node->cmd, SPACE_M, control);
-		if (array[I] == array[MAX] && f_node->fd_out == -1)
-			f_node->fd_out = 1;
-		f_node = f_node->next;
+		if (array[I] == 0 && (n->fd_in == -1))
+			n->fd_in = 0;
+		if (n->cmd != NULL)
+			n->cmd_splited = ft_bash_split(n->cmd, (int []){32, 9}, control);
+		if (array[I] == array[MAX] && n->fd_out == -1)
+			n->fd_out = 1;
+		n = n->next;
 		array[I]++;
 	}
 }
