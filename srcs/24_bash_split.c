@@ -1,0 +1,99 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   24_bash_split.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/24 06:51:35 by anurtiag          #+#    #+#             */
+/*   Updated: 2024/04/03 15:42:49 by emimenza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../incs/minishell.h"
+
+static void	ignore_separator(char const *s, int *control, int *i, int mode)
+{
+	if (mode == 1)
+		(*i)++;
+	if ((control[0] == TRUE && control[1] == TRUE) && s[*i] == '\'')
+		control[0] = FALSE;
+	else if (control[0] == FALSE && s[*i] == '\'')
+		control[0] = TRUE;
+	else if ((control[1] == TRUE && control[0] == TRUE) && s[*i] == '\"')
+		control[1] = FALSE;
+	else if (control[1] == FALSE && s[*i] == '\"')
+		control[1] = TRUE;
+}
+
+static int	ft_count(char const *s, char c, int *control)
+{
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	if (s[i] != c && s[i] != '\0')
+		count++;
+	while (s[i])
+	{
+		ignore_separator(s, control, &i, 0);
+		if ((control[0] == TRUE && control[1] == TRUE) && \
+		((s[i] == c) && (s[i + 1] != c) && (s[i + 1])))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+static void	freeall(char **splits)
+{
+	int		i;
+
+	i = 0;
+	while (splits[i])
+	{
+		free(splits[i]);
+		i++;
+	}
+	free(splits);
+}
+
+static int	check_str(char **str, int j)
+{
+	if (str[j - 1] == NULL)
+	{
+		freeall(str);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+char	**ft_bash_split(char const *s, char cr, int *c)
+{
+	int		a[4];
+	char	**str;
+
+	a[I] = 0;
+	a[J] = 0;
+	str = ft_calloc(ft_count(s, cr, c) + 1, sizeof(char *));
+	if (!s || !str)
+		return (NULL);
+	while (s[a[I]] && (c[1] == TRUE && c[0] == TRUE))
+	{
+		ignore_separator(s, c, &a[I], 0);
+		while ((s[a[I]] == cr) && (c[1] == TRUE && c[0] == TRUE))
+			ignore_separator(s, c, &(a[I]), 1);
+		a[START_] = a[I];
+		while ((s[a[I]] != cr && s[a[I]]) || (c[1] == FALSE || c[0] == FALSE))
+			ignore_separator(s, c, &a[I], 1);
+		a[END_] = a[I];
+		if ((a[END_] > a[START_]))
+		{
+			str[a[J]++] = ft_substr(s, a[START_], a[END_] - a[START_]);
+			if (check_str(str, a[J]))
+				return (NULL);
+		}
+	}
+	return (str);
+}

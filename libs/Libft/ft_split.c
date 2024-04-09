@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:33:58 by emimenza          #+#    #+#             */
-/*   Updated: 2024/03/05 10:26:29 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:01:17 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	num_strings(char const *s, char c)
 	else if (c == 0)
 		return (0);
 	while (s[i] == c)
-			i++;
+		i++;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
@@ -45,7 +45,7 @@ static char	**freeall(char **str)
 
 	i = 0;
 	while (str[i])
-	{	
+	{
 		free(str[i]);
 		i++;
 	}

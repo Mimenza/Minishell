@@ -1,53 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   15_tokenization.c                                  :+:      :+:    :+:   */
+/*   27_tokenization.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:08:36 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/21 14:17:12 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:51:39 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-
+//Assigns the tokens to the struct
 int	tokenization(char *input, t_input **struct_input)
 {
-	int		control[2];
-	char	**tokens;
-	static t_var_list *variable_list;
-	int 	i = -1;
-	char	*tmp;
+	int					control[2];
+	char				**tokens;
 
 	control[0] = TRUE;
 	control[1] = TRUE;
 	tokens = ft_bash_split(input, SPACE_M, control);
 	if (control[0] == TRUE && control[1] == TRUE)
 	{
-		// while(tokens[++i])
-		// {
-		// 	if(tokens[i][0] == '\'')
-		// 	{
-		// 		tmp = tokens[i];
-		// 		tokens[i] = ft_strtrim(tokens[i], "\'");
-		// 		free(tmp);
-		// 	}
-		// 	if(tokens[i][0] == '\"')
-		// 	{
-		// 		tmp = tokens[i];
-		// 		tokens[i] = ft_strtrim(tokens[i], "\"");
-		// 		free(tmp);
-		// 	}
-			
-		// 	tokens[i] = remove_quotes(tokens[i]);
-		// }
-		// i = -1;
-		
 		(*struct_input)->token_raw = tokens;
-		return(TRUE);
+		return (TRUE);
 	}
 	else
-		return(FALSE);
+		return (FALSE);
 }
