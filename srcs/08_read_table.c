@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   08_read_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:33:58 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/03 15:41:34 by emimenza         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:43:55 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	add_option_to_state(t_states *state, t_options *option)
 }
 
 static void	read_table_utils(int (*array)[7], t_states *(*states)[3], \
-char ***tokens, char **line)
+char ***tokens, char *line)
 {
-	*tokens = ft_split(*line, '\t');
+	*tokens = ft_split(line, '\t');
 	(*array)[T_TYPE] = ft_atoi((*tokens)[1]);
 	(*array)[ACTION] = ft_atoi((*tokens)[2]);
 	(*array)[NEXT_STATE] = ft_atoi((*tokens)[3]);
@@ -84,7 +84,7 @@ char ***tokens, char **line)
 void	read_table(t_input **struct_input)
 {
 	t_states	*states[3];
-	char		*line;
+	char		**line;
 	char		**tokens;
 	t_options	*new_option;
 	int			array[7];
@@ -92,19 +92,16 @@ void	read_table(t_input **struct_input)
 	states[STATE_LIST] = NULL;
 	states[C_STATE] = NULL;
 	array[OPTION_INDEX] = 0;
-	array[F_D] = open("parsing_table", O_RDONLY);
-	if (array[F_D] == -1)
-		return (print_error(5, NULL, NULL));
-	line = get_next_line(array[F_D]);
-	while (line != NULL)
+	array[I] = 0;
+	line = custom_function();
+	while (line[array[I]] != NULL)
 	{
-		read_table_utils(&array, &states, &tokens, &line);
+		read_table_utils(&array, &states, &tokens, line[array[I]]);
 		new_option = create_option_node(array);
 		add_option_to_state(states[C_STATE], new_option);
-		free(line);
-		line = get_next_line(array[F_D]);
+		array[I]++;
 	}
-	close (array[F_D]);
+	free(line);
 	(*struct_input)->parsing_table = states[STATE_LIST];
 	return ;
 }

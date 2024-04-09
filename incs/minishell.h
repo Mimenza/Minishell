@@ -6,7 +6,7 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:42:23 by emimenza          #+#    #+#             */
-/*   Updated: 2024/04/09 12:41:08 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:42:15 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define AFTER 0		//index for the after of the dolar sign
 # define BEFORE 1		//index for the before of the dolar sign
 //READ_TABLE
-# define F_D 0			//index of the array for the fd value
 # define OPTION_INDEX 1	//index of the array for option index
 # define STATE 2		//index of the array for the state value
 # define T_TYPE 3		//index pf the array with the token type value
@@ -100,6 +99,7 @@
 # define READ 0				//standard input
 # define WRITE 1			//standard output
 # define ALLOW_WRITE 0
+# define NUM_LINES 101
 
 //Options of a state
 typedef struct s_options
@@ -224,6 +224,9 @@ int							ft_look_4_dollar(t_var_list **v_list, \
 //READ TABLE
 void						read_table(t_input **struct_input);
 
+//READ TABLE UTILS
+char						**custom_function(void);
+
 //ANALYZER
 void						print_token_list(t_token *tokens);
 void						create_tokens_analyzer(t_input **struct_input);
@@ -261,7 +264,7 @@ void						apply_action(t_options *opts, t_step **c_step, \
 							int *end);
 
 //BUILT IN
-void						ft_echo(char **args, int fd, t_input **struct_input);
+void						ft_echo(char **args, int fd, t_input **s_input);
 int							ft_pwd(t_input **env);
 int							get_path_utils(char **path, char **route, \
 							char *tmp, char *args);
@@ -319,7 +322,8 @@ void						ft_make_process(t_var_parsed_table *cmd_list, \
 							int fd[2], t_input **struct_input, t_step *step);
 
 //BASH SPLIT
-char						**ft_bash_split(char const *s, int array[2], int *c);
+char						**ft_bash_split(char const *s, int array[2], \
+							int *c);
 
 //FREE
 void						free_token_tree(t_token *head);
