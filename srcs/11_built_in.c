@@ -6,18 +6,17 @@
 /*   By: anurtiag <anurtiag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:43:59 by anurtiag          #+#    #+#             */
-/*   Updated: 2024/03/22 12:58:26 by anurtiag         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:50:44 by anurtiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	ft_echo(char **args, int fd)
+void	ft_echo(char **args, int fd, t_input **struct_input)
 {
 	size_t	i;
 	int		control;
 
-	// ft_putstr_fd("puta\n", 2);
 	i = -1;
 	control = FALSE;
 	args++;
@@ -34,17 +33,22 @@ void	ft_echo(char **args, int fd)
 	}
 	if (control == FALSE)
 		printf("\n");
+	ft_var_found(&(*struct_input)->ent_var, "?", "0");
 }
 
-int	ft_pwd(void)
+void	ft_pwd(t_input **env)
 {
 	char	*path;
 
 	path = getcwd(NULL, 0);
 	if (!path)
+	{
 		return(1);
+		ft_var_found(&(*env)->ent_var, "?", "1");
+	}
 	printf("%s\n", path);
 	free(path);
+	ft_var_found(&(*env)->ent_var, "?", "0");
 	return (0);
 }
 
@@ -65,7 +69,7 @@ int	get_path(char *args, t_input **env)
 		if (access(args, X_OK) != 0)
 			return(print_error(8, NULL, NULL), 1);
 		chdir(args);
-		ft_pwd();
+		// ft_pwd(env);
 		current->content = ft_strdup(args);
 		return(0);
 	}
